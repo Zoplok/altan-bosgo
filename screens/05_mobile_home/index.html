@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html class="light" lang="mn"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#e5eeff",
+            "tertiary-fixed": "#dbe1ff",
+            "on-tertiary-fixed": "#00174b",
+            "on-secondary-fixed-variant": "#5f4100",
+            "tertiary": "#000000",
+            "surface-bright": "#f8f9ff",
+            "secondary-container": "#ffc55f",
+            "surface-dim": "#cbdbf5",
+            "primary": "#000000",
+            "on-secondary-container": "#755100",
+            "on-tertiary-fixed-variant": "#003ea8",
+            "on-tertiary-container": "#497cff",
+            "on-primary-fixed": "#151b2a",
+            "outline": "#76777d",
+            "surface-container-high": "#dce9ff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#b4c5ff",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#45474c",
+            "background": "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#585e6f",
+            "secondary": "#7d5700",
+            "primary-fixed": "#dce2f6",
+            "on-error": "#ffffff",
+            "tertiary-container": "#00174b",
+            "on-primary-container": "#7d8496",
+            "secondary-fixed": "#ffdeaa",
+            "primary-fixed-dim": "#c0c6da",
+            "inverse-primary": "#c0c6da",
+            "surface-variant": "#d3e4fe",
+            "on-primary-fixed-variant": "#404757",
+            "inverse-on-surface": "#eaf1ff",
+            "outline-variant": "#c6c6cc",
+            "secondary-fixed-dim": "#f5bd58",
+            "inverse-surface": "#213145",
+            "on-background": "#0b1c30",
+            "on-secondary-fixed": "#271900",
+            "surface": "#f8f9ff",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "primary-container": "#151b2a",
+            "on-surface": "#0b1c30",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#d3e4fe"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-body text-on-surface antialiased min-h-screen flex flex-col pb-20 select-none">
+<!-- STICKY MOBILE TOP APP BAR -->
+<header class="sticky top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-container transition-colors">
+<div class="px-4 h-14 flex items-center justify-between gap-2 max-w-md mx-auto">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-black shadow-sm ring-1 ring-secondary/20">
+<img alt="Алтан Босго" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs_0ndIoJ0pGSoZN3KjC_FVIvwqowCJKp9WItAaDyrm-dSQ9pmVohiuJ5zdUBlaZN4IUEt8FCekno1nL7yz9z-PUhB_d1_kbW9dTDTCjr_cUPZxyLx1h1-zwXgwCghpNQwUuaBFTOoXnODQnQkD6RMqHkOEmdnP8THDGdoxTyx8D9wHrLOL3v12BXxj5XLPi_s5IJGmD5YQCYV6U10H_2L2ZRGT-m9sAe9yc722GfAbT0-p83jdVxXHG9QWkqeQ_xSbQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline font-extrabold text-[15px] tracking-tight text-on-surface leading-none">АЛТАН БОСГО</span>
+<span class="text-[9px] font-headline font-semibold text-secondary uppercase tracking-wider mt-0.5">Нэгдсэн систем</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<!-- Dark Mode Toggle Button -->
+<button aria-label="Горим солих" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-low transition-colors" onclick="document.documentElement.classList.toggle('dark')" type="button">
+<span class="material-symbols-outlined text-[20px] dark:hidden">light_mode</span>
+<span class="material-symbols-outlined text-[20px] hidden dark:block text-secondary-container">dark_mode</span>
+</button>
+<!-- Notification Bell -->
+<button aria-label="Мэдэгдэл" class="relative w-9 h-9 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-[21px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface-container-lowest"></span>
+</button>
+<!-- User Avatar / Menu -->
+<a aria-label="Профайл нэвтрэх" class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-headline font-bold text-xs shadow-sm ml-1" href="#profile">
+<span>Б</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT -->
+<main class="flex-1 w-full max-w-md mx-auto px-4 pt-3 pb-8 flex flex-col gap-5">
+<!-- 1. COMPACT HERO SECTION -->
+<section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-secondary-container/15 p-4 border border-surface-container shadow-sm">
+<div class="pointer-events-none absolute -right-6 -top-6 w-32 h-32 bg-secondary-container/30 rounded-full blur-2xl"></div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest shadow-xs text-on-surface mb-2.5">
+<span class="material-symbols-outlined text-secondary text-[14px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-headline text-[11px] font-semibold text-secondary">ЭЕШ 2026 Хөтөлбөр</span>
+<span class="w-1 h-1 rounded-full bg-secondary/50"></span>
+<span class="text-[10px] text-on-surface-variant">БШУЯ Баталгаажуулсан</span>
+</div>
+<h1 class="font-headline font-extrabold text-[22px] leading-tight text-on-surface mb-1.5">
+        Боловсролын бүх мэдээлэл — <span class="bg-gradient-to-r from-secondary to-on-secondary-container bg-clip-text text-transparent">нэг дор.</span>
+</h1>
+<p class="font-body text-[12px] text-on-surface-variant leading-relaxed mb-3">
+        ЕБС, их сургуулиудын 2026 оны ЭЕШ-ийн босго оноо, сургалтын төлбөр, тэтгэлгийн албан ёсны нэгдсэн лавлах.
+      </p>
+<!-- Search Input Bar -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[19px] text-on-surface-variant pointer-events-none">search</span>
+<input class="w-full h-11 pl-9 pr-20 rounded-xl bg-surface-container-lowest border border-surface-container text-on-surface text-[13px] placeholder:text-on-surface-variant/70 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary transition-all" placeholder="Сургууль, мэргэжил, тэтгэлэг..." type="text"/>
+<button class="absolute right-1.5 px-2.5 h-8 rounded-lg bg-primary text-on-primary font-headline text-[11px] font-semibold flex items-center gap-0.5 shadow-xs" type="button">
+<span>Хайх</span>
+</button>
+</div>
+<!-- Micro Filter Chips (Horizontally Scrollable) -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-2.5 pb-0.5">
+<button class="shrink-0 px-3 py-1 rounded-full bg-primary text-on-primary text-[11px] font-headline font-semibold shadow-xs" type="button">Бүгд</button>
+<button class="shrink-0 px-3 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-headline font-medium border border-surface-container" type="button">Их сургууль (64)</button>
+<button class="shrink-0 px-3 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-headline font-medium border border-surface-container" type="button">ЕБС Сургууль</button>
+<button class="shrink-0 px-3 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-headline font-medium border border-surface-container" type="button">Мэргэжил</button>
+<button class="shrink-0 px-3 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-headline font-medium border border-surface-container" type="button">Тэтгэлэг</button>
+<button class="shrink-0 px-3 py-1 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-headline font-medium border border-surface-container" type="button">Хуанли</button>
+</div>
+</section>
+<!-- 2. QUICK NAVIGATION 2x2 GRID -->
+<section>
+<div class="flex items-center justify-between mb-2 px-0.5">
+<h2 class="font-headline font-bold text-[14px] text-on-surface">Үндсэн чиглэлүүд</h2>
+<span class="text-[11px] font-medium text-secondary">Шуурхай холбоос</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Tile 1: Universities -->
+<a class="group relative rounded-xl bg-surface-container-lowest p-3 border border-surface-container shadow-xs active:scale-[0.98] transition-all flex flex-col justify-between" href="#universities">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary-container group-hover:text-on-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container/30 text-secondary font-headline text-[10px] font-bold">64 сургууль</span>
+</div>
+<div class="mt-2.5">
+<h3 class="font-headline font-bold text-[13px] text-on-surface leading-tight">Их, дээд сургууль</h3>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Босго оноо, хөтөлбөр</p>
+</div>
+</a>
+<!-- Tile 2: K-12 Schools -->
+<a class="group relative rounded-xl bg-surface-container-lowest p-3 border border-surface-container shadow-xs active:scale-[0.98] transition-all flex flex-col justify-between" href="#k12">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary-container group-hover:text-on-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">school</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-headline text-[10px] font-bold">720+ ЕБС</span>
+</div>
+<div class="mt-2.5">
+<h3 class="font-headline font-bold text-[13px] text-on-surface leading-tight">ЕБС Сургуулиуд</h3>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Дүүрэг, гүнзгий анги</p>
+</div>
+</a>
+<!-- Tile 3: Majors -->
+<a class="group relative rounded-xl bg-surface-container-lowest p-3 border border-surface-container shadow-xs active:scale-[0.98] transition-all flex flex-col justify-between" href="#majors">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary-container group-hover:text-on-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-headline text-[10px] font-bold">240+ мэргэжил</span>
+</div>
+<div class="mt-2.5">
+<h3 class="font-headline font-bold text-[13px] text-on-surface leading-tight">Мэргэжил сонгох</h3>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Цалин, ажлын байр</p>
+</div>
+</a>
+<!-- Tile 4: Scholarships -->
+<a class="group relative rounded-xl bg-surface-container-lowest p-3 border border-surface-container shadow-xs active:scale-[0.98] transition-all flex flex-col justify-between" href="#scholarships">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary-container group-hover:text-on-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container/30 text-secondary font-headline text-[10px] font-bold">120+ тэтгэлэг</span>
+</div>
+<div class="mt-2.5">
+<h3 class="font-headline font-bold text-[13px] text-on-surface leading-tight">Тэтгэлэг &amp; сан</h3>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Дотоод болон гадаад</p>
+</div>
+</a>
+</div>
+</section>
+<!-- 3. TOP UNIVERSITIES MOBILE CARDS -->
+<section id="universities">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<div>
+<h2 class="font-headline font-bold text-[15px] text-on-surface">Шилдэг Их Сургуулиуд</h2>
+<p class="text-[10px] text-on-surface-variant">2026 оны ЭЕШ-ийн босго баталгаажсан</p>
+</div>
+<a class="font-headline text-[11px] font-bold text-secondary flex items-center gap-0.5" href="#">
+<span>Бүгд (64)</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<div class="space-y-3">
+<!-- Card 1: МУИС -->
+<div class="rounded-2xl bg-surface-container-lowest p-3.5 border border-surface-container shadow-xs">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline font-extrabold text-sm text-primary ring-1 ring-surface-variant">
+                МУ
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<h3 class="font-headline font-bold text-[14px] text-on-surface leading-none">МУИС</h3>
+<span class="material-symbols-outlined text-secondary text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Монгол Улсын Их Сургууль</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-headline text-[10px] font-semibold">Улсын</span>
+</div>
+<!-- Micro Metric Grid -->
+<div class="grid grid-cols-3 gap-1.5 p-2 rounded-xl bg-surface-container-low text-center mb-3">
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Босго</span>
+<span class="font-headline font-extrabold text-[13px] text-secondary">560+</span>
+</div>
+<div class="border-x border-surface-container">
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">1 Кредит</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">₮138.5k</span>
+</div>
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Ажил эрхлэлт</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">91.4%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant mb-2.5 px-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Сүхбаатар дүүрэг</span>
+<span class="font-medium text-on-surface">86 Хөтөлбөр</span>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-surface-container-low">
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline font-semibold text-[11px] flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">add_chart</span>
+<span>Харьцуулах</span>
+</button>
+<a class="h-8 rounded-lg bg-secondary-container text-on-secondary-fixed font-headline font-bold text-[11px] flex items-center justify-center gap-1 transition-colors" href="#">
+<span>Дэлгэрэнгүй</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2: ШУТИС -->
+<div class="rounded-2xl bg-surface-container-lowest p-3.5 border border-surface-container shadow-xs">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/40 flex items-center justify-center font-headline font-extrabold text-sm text-secondary ring-1 ring-secondary/20">
+                ШУ
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<h3 class="font-headline font-bold text-[14px] text-on-surface leading-none">ШУТИС</h3>
+<span class="material-symbols-outlined text-secondary text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-0.5">ШУ Технологийн Их Сургууль</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-headline text-[10px] font-semibold">Улсын</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 p-2 rounded-xl bg-surface-container-low text-center mb-3">
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Босго</span>
+<span class="font-headline font-extrabold text-[13px] text-secondary">520+</span>
+</div>
+<div class="border-x border-surface-container">
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">1 Кредит</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">₮124.0k</span>
+</div>
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Ажил эрхлэлт</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">94.2%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant mb-2.5 px-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Сүхбаатар дүүрэг</span>
+<span class="font-medium text-on-surface">74 Хөтөлбөр</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-surface-container-low">
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline font-semibold text-[11px] flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">add_chart</span>
+<span>Харьцуулах</span>
+</button>
+<a class="h-8 rounded-lg bg-secondary-container text-on-secondary-fixed font-headline font-bold text-[11px] flex items-center justify-center gap-1 transition-colors" href="#">
+<span>Дэлгэрэнгүй</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 3: АШУҮИС -->
+<div class="rounded-2xl bg-surface-container-lowest p-3.5 border border-surface-container shadow-xs">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline font-extrabold text-sm text-primary ring-1 ring-surface-variant">
+                АШ
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<h3 class="font-headline font-bold text-[14px] text-on-surface leading-none">АШУҮИС</h3>
+<span class="material-symbols-outlined text-secondary text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Анагаахын ШУҮ Их Сургууль</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-headline text-[10px] font-semibold">Улсын</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 p-2 rounded-xl bg-surface-container-low text-center mb-3">
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Босго</span>
+<span class="font-headline font-extrabold text-[13px] text-secondary">620+</span>
+</div>
+<div class="border-x border-surface-container">
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">1 Кредит</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">₮156.0k</span>
+</div>
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Ажил эрхлэлт</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">97.8%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant mb-2.5 px-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Баянзүрх дүүрэг</span>
+<span class="font-medium text-on-surface">42 Хөтөлбөр</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-surface-container-low">
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline font-semibold text-[11px] flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">add_chart</span>
+<span>Харьцуулах</span>
+</button>
+<a class="h-8 rounded-lg bg-secondary-container text-on-secondary-fixed font-headline font-bold text-[11px] flex items-center justify-center gap-1 transition-colors" href="#">
+<span>Дэлгэрэнгүй</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 4: СЭЗИС -->
+<div class="rounded-2xl bg-surface-container-lowest p-3.5 border border-surface-container shadow-xs">
+<div class="flex items-start justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline font-extrabold text-sm text-primary ring-1 ring-surface-variant">
+                СЭ
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<h3 class="font-headline font-bold text-[14px] text-on-surface leading-none">СЭЗИС</h3>
+<span class="material-symbols-outlined text-secondary text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Санхүү Эдийн Засгийн Их Сургууль</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-headline text-[10px] font-semibold">Хувийн</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 p-2 rounded-xl bg-surface-container-low text-center mb-3">
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Босго</span>
+<span class="font-headline font-extrabold text-[13px] text-secondary">580+</span>
+</div>
+<div class="border-x border-surface-container">
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">1 Кредит</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">₮185.0k</span>
+</div>
+<div>
+<span class="text-[9px] text-on-surface-variant block uppercase font-medium">Ажил эрхлэлт</span>
+<span class="font-headline font-bold text-[12px] text-on-surface">96.5%</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant mb-2.5 px-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Баянзүрх дүүрэг</span>
+<span class="font-medium text-on-surface">35 Хөтөлбөр</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-surface-container-low">
+<button class="h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-headline font-semibold text-[11px] flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">add_chart</span>
+<span>Харьцуулах</span>
+</button>
+<a class="h-8 rounded-lg bg-secondary-container text-on-secondary-fixed font-headline font-bold text-[11px] flex items-center justify-center gap-1 transition-colors" href="#">
+<span>Дэлгэрэнгүй</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. QUICK COMPARISON HIGHLIGHT WIDGET -->
+<section class="rounded-2xl bg-surface-container-low p-4 border border-surface-container shadow-sm" id="comparison">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-headline text-[10px] font-bold uppercase">
+            Шууд харьцуулалт
+          </span>
+</div>
+<a class="text-[11px] font-headline font-bold text-secondary flex items-center gap-0.5" href="#">
+<span>Бүрэн үзэх</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+<h3 class="font-headline font-bold text-[14px] text-on-surface mb-2.5">
+        МУИС vs ШУТИС
+      </h3>
+<div class="rounded-xl bg-surface-container-lowest p-3 border border-surface-container text-[12px] space-y-2.5">
+<!-- Row 1: Header -->
+<div class="grid grid-cols-3 pb-2 border-b border-surface-container font-headline font-bold text-[11px]">
+<span class="text-on-surface-variant">Шалгуур</span>
+<span class="text-center text-primary">МУИС</span>
+<span class="text-center text-secondary">ШУТИС</span>
+</div>
+<!-- Row 2: Босго -->
+<div class="grid grid-cols-3 items-center text-[11px]">
+<span class="text-on-surface-variant font-medium">ЭЕШ Босго</span>
+<span class="text-center font-headline font-extrabold text-secondary bg-surface-container-low py-0.5 rounded">560+</span>
+<span class="text-center font-headline font-extrabold text-secondary bg-surface-container-low py-0.5 rounded">520+</span>
+</div>
+<!-- Row 3: 1 кредит -->
+<div class="grid grid-cols-3 items-center text-[11px]">
+<span class="text-on-surface-variant font-medium">1 Кредит</span>
+<span class="text-center font-semibold text-on-surface">₮138.5k</span>
+<span class="text-center font-semibold text-on-surface">₮124.0k</span>
+</div>
+<!-- Row 4: Дотуур байр -->
+<div class="grid grid-cols-3 items-center text-[11px]">
+<span class="text-on-surface-variant font-medium">Дотуур байр</span>
+<span class="text-center text-on-surface">1,450 (78%)</span>
+<span class="text-center text-on-surface">1,820 (85%)</span>
+</div>
+<!-- Row 5: Магадлан итгэмжлэл -->
+<div class="grid grid-cols-3 items-center text-[10px]">
+<span class="text-on-surface-variant font-medium">Итгэмжлэл</span>
+<span class="text-center text-on-surface font-medium">ASIIN</span>
+<span class="text-center text-on-surface font-medium">ABET, ASIIN</span>
+</div>
+</div>
+<button class="w-full mt-3 h-9 rounded-xl bg-primary text-on-primary font-headline text-[12px] font-semibold flex items-center justify-center gap-1.5 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Өөр сургуультай зэрэгцүүлэх</span>
+</button>
+</section>
+<!-- 5. K-12 DIRECTORY TEASER -->
+<section class="rounded-2xl bg-surface-container-lowest p-4 border border-surface-container shadow-xs" id="k12">
+<div class="flex items-center justify-between mb-3">
+<div>
+<span class="text-[9px] font-headline font-bold text-secondary uppercase tracking-wider block">Ерөнхий Боловсрол</span>
+<h3 class="font-headline font-bold text-[14px] text-on-surface">ЕБС Сургуулиудын сан</h3>
+</div>
+<a class="font-headline text-[11px] font-bold text-secondary flex items-center gap-0.5" href="#">
+<span>Бүгд</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<div class="space-y-2">
+<div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between">
+<div>
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="px-1.5 py-0.2 rounded bg-surface-container font-headline text-[9px] font-semibold text-on-surface">Төрийн</span>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">1-р сургууль</h4>
+</div>
+<p class="text-[10px] text-on-surface-variant">Сүхбаатар дүүрэг • Англи хэлний гүнзгий</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between">
+<div>
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container/40 font-headline text-[9px] font-semibold text-secondary">Хувийн</span>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">Шинэ Монгол сургууль</h4>
+</div>
+<p class="text-[10px] text-on-surface-variant">Баянзүрх дүүрэг • STEM, Япон стандарт</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between">
+<div>
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container/40 font-headline text-[9px] font-semibold text-secondary">Хувийн</span>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">Сант сургууль</h4>
+</div>
+<p class="text-[10px] text-on-surface-variant">Сүхбаатар дүүрэг • Математик, AP хөтөлбөр</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- 6. IMPORTANT CALENDAR DATES -->
+<section id="calendar">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<div>
+<h3 class="font-headline font-bold text-[14px] text-on-surface">Элсэлтийн 2026 хуанли</h3>
+<p class="text-[10px] text-on-surface-variant">Бүртгэл болон шалгалтын хуваарь</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">calendar_today</span>
+</div>
+<div class="space-y-2">
+<div class="rounded-xl bg-surface-container-lowest p-3 border-l-4 border-secondary border-y border-r border-surface-container shadow-xs">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline font-bold text-[11px] text-secondary">04 сарын 15-наас</span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-secondary-container/40 text-secondary font-headline text-[9px] font-bold">
+              Идэвхтэй
+            </span>
+</div>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">ЭЕШ-ийн цахим бүртгэл эхэлнэ</h4>
+<p class="text-[10px] text-on-surface-variant mt-0.5">БҮТ eec.mn portals-аар шалгуулагчдын цахим бүртгэл</p>
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3 border-l-4 border-surface-container-highest border-y border-r border-surface-container shadow-xs">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline font-bold text-[11px] text-on-surface-variant">05 сарын 30 хүртэл</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-headline text-[9px]">
+              Хүлээн авч буй
+            </span>
+</div>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">Гадаад Засгийн газрын тэтгэлэг</h4>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Stipendium Hungaricum, CSC материалын сүүлийн хугацаа</p>
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-3 border-l-4 border-surface-container border-y border-r border-surface-container shadow-xs">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline font-bold text-[11px] text-on-surface-variant">06 сарын 20 - 07 сарын 05</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-headline text-[9px]">
+              Удахгүй
+            </span>
+</div>
+<h4 class="font-headline font-bold text-[12px] text-on-surface">Их сургуулиудын эхний хуваарилалт</h4>
+<p class="text-[10px] text-on-surface-variant mt-0.5">ЭЕШ оноо гарсны дараа эрхийн бичиг олголт явагдана</p>
+</div>
+</div>
+</section>
+<!-- 7. OFFICIAL TRUST & VERIFICATION BANNER -->
+<section class="rounded-2xl bg-primary text-on-primary p-4 shadow-md relative overflow-hidden">
+<div class="pointer-events-none absolute -right-6 -bottom-6 w-28 h-28 bg-secondary-container/20 rounded-full blur-xl"></div>
+<div class="relative z-10">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-headline text-[10px] font-bold uppercase mb-2">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span>100% Баталгаажсан Эх Сурвалж</span>
+</div>
+<h3 class="font-headline font-bold text-[15px] text-on-primary leading-snug mb-1">
+          БШУЯ • Албан ёсны нэгдсэн систем
+        </h3>
+<p class="text-[11px] text-primary-fixed leading-relaxed mb-3">
+          Бүх их дээд сургууль, ЕБС болон тэтгэлгийн мэдээлэл төрийн албан ёсны сангаар баталгаажсан болно.
+        </p>
+<div class="grid grid-cols-3 gap-2 pt-2 border-t border-surface-container/20 text-center">
+<div>
+<span class="font-headline font-extrabold text-[14px] text-secondary-container block">100%</span>
+<span class="text-[9px] text-primary-fixed block">Үнэн бодит</span>
+</div>
+<div>
+<span class="font-headline font-extrabold text-[14px] text-secondary-container block">24/7</span>
+<span class="text-[9px] text-primary-fixed block">Шинэчлэлт</span>
+</div>
+<div>
+<span class="font-headline font-extrabold text-[14px] text-secondary-container block">Үнэгүй</span>
+<span class="text-[9px] text-primary-fixed block">Нээлттэй сан</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. COMPACT MOBILE FOOTER -->
+<footer class="pt-2 text-center text-on-surface-variant">
+<div class="flex items-center justify-center gap-2 mb-2">
+<img alt="Алтан Босго" class="w-6 h-6 rounded-md object-cover bg-black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy7PAiThvUVBTKBuCz2iJiNQt__mlvnEdYQ_pr2tbm7LZ5G9LiUsDYEV4d84ZwX352wqS-HCKSGPnqlQ1cXXoMuPDtOS4kYGPeXl_dZlMkHaZPGGuOtcBAgII6MtBQD0EbOh50Ti_iHesQQ9a56q1xTnV6Lw5-Udd4KR6u5clAN-Sd-o_6qI4Oe7ePJjvE9Rz28J0cQ64PfKNDaIbbD-IDj5tRD4MlkMAhfLj81GMOMJbBhmEWUc8NA4Hz276JgfqUig"/>
+<span class="font-headline font-extrabold text-[13px] text-on-surface">АЛТАН БОСГО</span>
+</div>
+<p class="text-[10px] max-w-xs mx-auto mb-2">
+        Монголын сурагч, оюутан, эцэг эхчүүдэд зориулсан боловсролын нэгдсэн дижитал хөтөч.
+      </p>
+<div class="flex items-center justify-center gap-3 text-[11px] font-medium text-secondary mb-2">
+<a class="hover:underline" href="#">Бидний тухай</a>
+<span>•</span>
+<a class="hover:underline" href="#">Үйлчилгээний нөхцөл</a>
+<span>•</span>
+<a class="hover:underline" href="#">Тусламж</a>
+</div>
+<p class="text-[9px] text-on-surface-variant/70">
+        © 2026 Алтан босго систем. Бүх эрх хуулиар хамгаалагдсан.
+      </p>
+</footer>
+</main>
+<!-- PERSISTENT MOBILE BOTTOM NAVIGATION BAR -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-lg border-t border-surface-container safe-area-bottom">
+<div class="max-w-md mx-auto h-16 px-2 flex items-center justify-around">
+<!-- 1. Нүүр (Active) -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-secondary" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-headline font-bold text-[10px] mt-0.5">Нүүр</span>
+</a>
+<!-- 2. Сургуулиуд -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#universities">
+<span class="material-symbols-outlined text-[22px]">school</span>
+<span class="font-headline text-[10px] font-medium mt-0.5">Сургуулиуд</span>
+</a>
+<!-- 3. Хайх -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#search-section">
+<div class="w-10 h-10 -mt-3 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<span class="font-headline text-[10px] font-medium mt-0.5">Хайх</span>
+</a>
+<!-- 4. Харьцуулах (with Badge 2) -->
+<a class="relative flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#comparison">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]">compare_arrows</span>
+<span class="absolute -top-1 -right-2 min-w-[15px] h-[15px] px-1 rounded-full bg-secondary-container text-on-secondary-fixed font-headline font-bold text-[9px] flex items-center justify-center shadow-xs">2</span>
+</div>
+<span class="font-headline text-[10px] font-medium mt-0.5">Харьцуулах</span>
+</a>
+<!-- 5. Профайл -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#profile">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-headline text-[10px] font-medium mt-0.5">Профайл</span>
+</a>
+</div>
+</nav>
+</body></html>

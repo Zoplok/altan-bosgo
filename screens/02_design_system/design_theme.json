@@ -1,0 +1,173 @@
+{
+  "colorMode": "LIGHT",
+  "font": "PLUS_JAKARTA_SANS",
+  "roundness": "ROUND_EIGHT",
+  "customColor": "#0b1220",
+  "headlineFont": "PLUS_JAKARTA_SANS",
+  "bodyFont": "INTER",
+  "labelFont": "PLUS_JAKARTA_SANS",
+  "namedColors": {
+    "on_tertiary_fixed_variant": "#003ea8",
+    "surface_container_highest": "#d3e4fe",
+    "inverse_primary": "#c0c6da",
+    "primary": "#000000",
+    "on_secondary_fixed": "#271900",
+    "surface_container": "#e5eeff",
+    "surface_variant": "#d3e4fe",
+    "surface_tint": "#585e6f",
+    "on_tertiary_fixed": "#00174b",
+    "surface_container_high": "#dce9ff",
+    "surface_bright": "#f8f9ff",
+    "primary_container": "#151b2a",
+    "secondary_container": "#ffc55f",
+    "on_error_container": "#93000a",
+    "primary_fixed": "#dce2f6",
+    "on_background": "#0b1c30",
+    "background": "#f8f9ff",
+    "on_error": "#ffffff",
+    "surface_container_low": "#eff4ff",
+    "on_secondary": "#ffffff",
+    "inverse_surface": "#213145",
+    "tertiary_fixed": "#dbe1ff",
+    "on_primary_fixed_variant": "#404757",
+    "surface_container_lowest": "#ffffff",
+    "on_surface": "#0b1c30",
+    "outline": "#76777d",
+    "primary_fixed_dim": "#c0c6da",
+    "secondary": "#7d5700",
+    "on_surface_variant": "#45474c",
+    "error": "#ba1a1a",
+    "on_primary_fixed": "#151b2a",
+    "inverse_on_surface": "#eaf1ff",
+    "secondary_fixed_dim": "#f5bd58",
+    "secondary_fixed": "#ffdeaa",
+    "on_secondary_fixed_variant": "#5f4100",
+    "on_primary_container": "#7d8496",
+    "on_tertiary": "#ffffff",
+    "surface": "#f8f9ff",
+    "on_secondary_container": "#755100",
+    "surface_dim": "#cbdbf5",
+    "on_primary": "#ffffff",
+    "tertiary_container": "#00174b",
+    "error_container": "#ffdad6",
+    "tertiary": "#000000",
+    "outline_variant": "#c6c6cc",
+    "on_tertiary_container": "#497cff",
+    "tertiary_fixed_dim": "#b4c5ff"
+  },
+  "designMd": "---\nname: Altan Bosgo Design System\ncolors:\n  surface: '#f8f9ff'\n  surface-dim: '#cbdbf5'\n  surface-bright: '#f8f9ff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#eff4ff'\n  surface-container: '#e5eeff'\n  surface-container-high: '#dce9ff'\n  surface-container-highest: '#d3e4fe'\n  on-surface: '#0b1c30'\n  on-surface-variant: '#45474c'\n  inverse-surface: '#213145'\n  inverse-on-surface: '#eaf1ff'\n  outline: '#76777d'\n  outline-variant: '#c6c6cc'\n  surface-tint: '#585e6f'\n  primary: '#000000'\n  on-primary: '#ffffff'\n  primary-container: '#151b2a'\n  on-primary-container: '#7d8496'\n  inverse-primary: '#c0c6da'\n  secondary: '#7d5700'\n  on-secondary: '#ffffff'\n  secondary-container: '#ffc55f'\n  on-secondary-container: '#755100'\n  tertiary: '#000000'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00174b'\n  on-tertiary-container: '#497cff'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#dce2f6'\n  primary-fixed-dim: '#c0c6da'\n  on-primary-fixed: '#151b2a'\n  on-primary-fixed-variant: '#404757'\n  secondary-fixed: '#ffdeaa'\n  secondary-fixed-dim: '#f5bd58'\n  on-secondary-fixed: '#271900'\n  on-secondary-fixed-variant: '#5f4100'\n  tertiary-fixed: '#dbe1ff'\n  tertiary-fixed-dim: '#b4c5ff'\n  on-tertiary-fixed: '#00174b'\n  on-tertiary-fixed-variant: '#003ea8'\n  background: '#f8f9ff'\n  on-background: '#0b1c30'\n  surface-variant: '#d3e4fe'\ntypography:\n  display:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 48px\n    fontWeight: '800'\n    lineHeight: 56px\n    letterSpacing: -0.025em\n  display-mobile:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 34px\n    fontWeight: '800'\n    lineHeight: 42px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 36px\n    fontWeight: '700'\n    lineHeight: 44px\n    letterSpacing: -0.02em\n  headline-lg-mobile:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 26px\n    fontWeight: '700'\n    lineHeight: 34px\n    letterSpacing: -0.015em\n  headline-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 24px\n    fontWeight: '700'\n    lineHeight: 32px\n    letterSpacing: -0.015em\n  headline-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  title-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 26px\n  title-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 16px\n    fontWeight: '600'\n    lineHeight: 24px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 26px\n  body-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 22px\n  body-sm:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 18px\n  label-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 14px\n    fontWeight: '600'\n    lineHeight: 20px\n    letterSpacing: 0.01em\n  label-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: 16px\n    letterSpacing: 0.02em\n  label-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 10px\n    fontWeight: '700'\n    lineHeight: 14px\n    letterSpacing: 0.05em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 1.5rem\n  gutter-mobile: 0.75rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system embodies academic distinction, intellectual ascension, and progressive educational technology. Derived directly from the visual symbolism of the \"Golden Portal\" (portal archway, celestial stair, open tome, and scholar's mortarboard), the aesthetic balances the timeless authority of classical scholarship with the kinetic clarity of modern fintech and SaaS applications.\n\n### Design Principles\n- **Prestigious Trust:** Deep midnight foundations and warm academic gold accents build institutional confidence for students, parents, and universities navigating higher education choices.\n- **Data Lucidity:** Educational decisions require rigorous metric comparisons (ЭЕШ score thresholds, tuition ranges, employment statistics). Typography, badges, and layout hierarchy emphasize effortless scanability.\n- **Sovereign Clarity:** UI components honor bilingual and Cyrillic script demands with balanced letter spacing, generous x-heights, and structured line heights.\n- **Architectural Harmony:** Geometric forms borrow from the portal arch motif—crisp geometry tempered by soft inner radiuses and disciplined borderlines.\n\n## Colors\n\nThe color palette draws directly from the brand insignia: a nocturnal navy foundation, luminous imperial gold, and high-clarity neutrals.\n\n### Palette Architecture\n- **Primary Navy (`#0B1220`):** Acts as the foundational anchor. Used for primary typography and high-emphasis headers in light mode; serves as canvas background in dark mode.\n- **Academic Gold (`#D9A441` / Hover `#E5B254` / Subtle Tint `#FDF8EE`):** Signifies achievement, honors, scholarship thresholds, and high-order CTA moments.\n- **Functional Accent Blue (`#2563EB`):** Applied to active states, links, filters, and standard digital interactions where high contrast is necessary.\n- **Verification Emerald (`#10B981` / Dark Mode Tint `#064E3B`):** Reserved strictly for institutional accreditations (`✓ Баталгаатай`), active admissions badges, and verified career data.\n- **Light Surfaces:** Base canvas `#F8FAFC`, elevated container cards `#FFFFFF`, secondary nested blocks `#F1F5F9`.\n- **Dividers & Strokes:** `#E2E8F0` on light mode; `#1E293B` on dark mode.\n\n## Typography\n\nThe typographic hierarchy pairs the structured, geometry-conscious **Plus Jakarta Sans** for headlines, stats, and branding cues with the neutral legibility of **Inter** for Cyrillic body copy, course curriculums, and tabular data.\n\n### Cyrillic Optimization\n- Headers feature tight negative tracking (`-0.02em` to `-0.015em`) to retain visual density across wide Cyrillic uppercase and lowercase glyph sets (e.g., Ж, Ш, Щ, Ю, Ф).\n- Body copy uses relaxed line heights (minimum 1.5x) to maintain effortless readability during prolonged scanning of admission requirements and program guidelines.\n- Numeric weights (TUITION, ЭЕШ threshold scores, ranks) leverage tabular figures (`tnum`) for exact vertical alignment in comparison matrices.\n\n## Layout & Spacing\n\nA structured 12-column responsive fluid grid governs desktop and tablet breakpoints, collapsing into an agile 4-column system on mobile viewports.\n\n### Grid Breakpoints & Alignment\n- **Desktop (1280px+):** 12 columns, max container width of 1200px, 24px gutters, 32px safe margins.\n- **Tablet (768px - 1279px):** 8 columns, 20px gutters, 24px margins.\n- **Mobile (320px - 767px):** 4 columns, 12px gutters, 16px margins.\n\n### Vertical Rhythm\nLayout spacing operates strictly on an 8pt base grid with a 4pt sub-scale (`0.25rem`, `0.5rem`, `1rem`, `1.5rem`, `2.5rem`). Section separators maintain clear 64px to 96px whitespace gaps, prioritizing breathable structure between university directory cards, search toolbars, and institutional scoreboards.\n\n## Elevation & Depth\n\nVisual hierarchy uses a refined combination of crisp hairline borders and soft ambient shadows. Surfaces appear tactile and elevated rather than aggressively detached.\n\n### Elevation Hierarchy\n- **Level 0 (Base Canvas):** `#F8FAFC` (Light) / `#0B1220` (Dark). Completely flat, grounding all operational components.\n- **Level 1 (Card & Content Blocks):** `#FFFFFF` (Light) / `#111827` (Dark). Border stroke `1px solid #E2E8F0` (Light) or `#1E293B` (Dark). Shadow: `0 1px 3px 0 rgba(11, 18, 32, 0.04), 0 1px 2px -1px rgba(11, 18, 32, 0.04)`.\n- **Level 2 (Hovered Cards, Popovers, Dropdowns):** Subtle ambient diffusion: `0 10px 25px -5px rgba(11, 18, 32, 0.08), 0 8px 10px -6px rgba(11, 18, 32, 0.04)`.\n- **Level 3 (Sticky Navigation, Modals, Comparison Drawers):** `0 20px 30px -10px rgba(11, 18, 32, 0.16)`. In light mode, navigation applies a glassmorphic blur (`backdrop-filter: blur(12px)`) with `rgba(255, 255, 255, 0.85)` surface opacity.\n- **Gold Accent Glow:** For verified university highlights or star threshold markers, use a focused golden halo: `0 0 0 1px #D9A441, 0 4px 14px rgba(217, 164, 65, 0.25)`.\n\n## Shapes\n\nThe design system employs a **Rounded** shape language (`roundedness: 2`), reflecting the architectural curve of the arch portal in the logo.\n\n### Radius Distribution\n- **Base Components (`0.5rem` / 8px):** Standard buttons, text inputs, filter selectors, dropdown panels, and table row containers.\n- **Container Surfaces (`1rem` / 16px):** University cards, comparison widgets, modal sheets, and scorecard tiles.\n- **Outer Shells & Hero Banners (`1.5rem` / 24px):** Major educational showcase banners, search bars, and onboarding prompts.\n- **Pills (`9999px`):** Status chips, ЭЕШ score tags, verified accreditation emblems (`✓ Баталгаатай`), and quick-tag search filters.\n\n## Components\n\n### Buttons\n- **Primary (Gold Sovereign):** Background `#D9A441`, text `#0B1220` (bold, high contrast), border radius 8px. Hover shifts to `#E5B254` with subtle translateY(-1px).\n- **Secondary (Navy Academic):** Background `#0B1220`, text `#FFFFFF`. Hover shifts to `#1E293B`.\n- **Outline / Ghost:** 1px border `#E2E8F0` (`#1E293B` in dark), text `#111827` (`#F8FAFC` in dark).\n\n### Badges & Filter Chips\n- **Verified Badge:** Background `#ECFDF5`, text `#065F46`, border `1px solid #A7F3D0`. Includes leading checkmark icon: `✓ Баталгаатай`. Dark mode maps to background `#064E3B`, text `#6EE7B7`.\n- **Threshold Score Chip (ЭЕШ Оноо):** Pill container with `#FDF8EE` background, `#92400E` text, and `#FDE68A` border. Displays qualifying score bars (e.g., `Босго оноо: 620+`).\n- **Interactive Quick-Tags:** Full-pill shaped with subtle transition states; toggled states fill with `#0B1220` (or `#D9A441` in dark mode).\n\n### University Directory Card\n- Structural card with a 16px radius, enclosed by a 1px slate hairline border.\n- Header incorporates university crest, English and Mongolian official titles, and the emerald accreditation badge.\n- Body displays a 3-column metric grid: Minimum Admission Score (ЭЕШ), Annual Tuition Counter (Төлбөр), and Employment Rate (Ажил эрхлэлт).\n- Bottom anchor provides a dual CTA: \"Харьцуулах\" (Add to Compare) ghost action and \"Хөтөлбөрүүд\" (Explore Programs) gold primary action.\n\n### Comparative Table\n- Sticky header featuring primary Navy accents with subtle horizontal separators.\n- Alternating row zebra tints (`#F8FAFC` in light mode, `#0F172A` in dark mode).\n- Standardized metric indicators with dedicated threshold chips and visual check/cross status flags.\n\n### Input Fields & Search Bars\n- Large search inputs equipped with an integrated magnifying glass icon, trailing keyboard shortcut prompt (`⌘K`), and bottom-anchored popular quick-tag filters.\n- Active states highlight using a 2px ring: `#D9A441` with zero interior inset blur.",
+  "colorVariant": "FIDELITY",
+  "overridePrimaryColor": "#0b1220",
+  "overrideSecondaryColor": "#d9a441",
+  "overrideTertiaryColor": "#2563eb",
+  "overrideNeutralColor": "#64748b",
+  "spacingScale": 2,
+  "typography": {
+    "title-md": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "16px",
+      "fontWeight": "600",
+      "lineHeight": "24px"
+    },
+    "body-lg": {
+      "fontFamily": "Inter",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "26px"
+    },
+    "body-sm": {
+      "fontFamily": "Inter",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "18px"
+    },
+    "label-md": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "lineHeight": "16px",
+      "letterSpacing": "0.02em"
+    },
+    "title-lg": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "18px",
+      "fontWeight": "600",
+      "lineHeight": "26px"
+    },
+    "display-mobile": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "34px",
+      "fontWeight": "800",
+      "lineHeight": "42px",
+      "letterSpacing": "-0.02em"
+    },
+    "headline-sm": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "20px",
+      "fontWeight": "600",
+      "lineHeight": "28px"
+    },
+    "headline-lg": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "36px",
+      "fontWeight": "700",
+      "lineHeight": "44px",
+      "letterSpacing": "-0.02em"
+    },
+    "display": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "48px",
+      "fontWeight": "800",
+      "lineHeight": "56px",
+      "letterSpacing": "-0.025em"
+    },
+    "label-lg": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "lineHeight": "20px",
+      "letterSpacing": "0.01em"
+    },
+    "headline-lg-mobile": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "26px",
+      "fontWeight": "700",
+      "lineHeight": "34px",
+      "letterSpacing": "-0.015em"
+    },
+    "label-sm": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "10px",
+      "fontWeight": "700",
+      "lineHeight": "14px",
+      "letterSpacing": "0.05em"
+    },
+    "body-md": {
+      "fontFamily": "Inter",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "22px"
+    },
+    "headline-md": {
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "24px",
+      "fontWeight": "700",
+      "lineHeight": "32px",
+      "letterSpacing": "-0.015em"
+    }
+  },
+  "spacing": {
+    "margin": "2rem",
+    "gutter": "1.5rem",
+    "space-xl": "2.5rem",
+    "space-lg": "1.5rem",
+    "gutter-mobile": "0.75rem",
+    "space-md": "1rem",
+    "space-xs": "0.25rem",
+    "space-sm": "0.5rem",
+    "margin-mobile": "1rem"
+  },
+  "headlineFontFamily": "Plus Jakarta Sans",
+  "bodyFontFamily": "Inter",
+  "labelFontFamily": "Plus Jakarta Sans"
+}
