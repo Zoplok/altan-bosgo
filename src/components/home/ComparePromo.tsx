@@ -30,7 +30,7 @@ export const ComparePromo: React.FC = () => {
 
           <Link
             href="/compare"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-400 text-navy-900 font-bold text-sm shadow transition-all shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl clay-btn-gold text-sm shadow transition-all shrink-0"
           >
             <Scale className="w-4 h-4" />
             <span>Шууд харьцуулах</span>
@@ -38,10 +38,10 @@ export const ComparePromo: React.FC = () => {
         </div>
 
         {/* Live Comparison Table Preview */}
-        <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 overflow-x-auto shadow-sm">
+        <div className="clay-card overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm border-collapse">
             <thead>
-              <tr className="bg-gray-50/80 dark:bg-navy-950 border-b border-gray-200 dark:border-navy-800">
+              <tr className="bg-gray-50/90 dark:bg-navy-950 border-b border-gray-200/80 dark:border-navy-800">
                 <th className="p-4 font-bold text-gray-500 dark:text-gray-400 w-1/4">Үзүүлэлт</th>
                 {sampleUnis.map((uni) => (
                   <th key={uni.id} className="p-4 font-bold text-navy-900 dark:text-white w-1/4">
@@ -49,7 +49,7 @@ export const ComparePromo: React.FC = () => {
                       <span className="font-extrabold text-sm sm:text-base text-navy-900 dark:text-gold">
                         {uni.shortName}
                       </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-gray-200 dark:bg-navy-800 text-gray-700 dark:text-gray-300">
+                      <span className="text-[10px] px-2.5 py-0.5 rounded-full clay-pill bg-gray-200 dark:bg-navy-800 text-gray-700 dark:text-gray-300 font-bold">
                         {uni.type}
                       </span>
                     </div>

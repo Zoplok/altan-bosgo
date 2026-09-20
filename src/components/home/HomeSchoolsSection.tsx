@@ -39,10 +39,10 @@ export const HomeSchoolsSection: React.FC = () => {
           {featuredSchools.map((school) => (
             <div
               key={school.id}
-              className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200/80 dark:border-navy-800 overflow-hidden shadow-sm hover:shadow-xl hover:border-gold transition-all duration-300 flex flex-col justify-between"
+              className="clay-card clay-card-hover overflow-hidden flex flex-col justify-between"
             >
               <div>
-                <div className="relative h-44 w-full bg-gray-100 dark:bg-navy-800">
+                <div className="relative h-48 w-full bg-gray-100 dark:bg-navy-800">
                   <Image
                     src={school.image}
                     alt={school.name}
@@ -50,7 +50,7 @@ export const HomeSchoolsSection: React.FC = () => {
                     className="object-cover"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-navy-900/90 text-navy-900 dark:text-white backdrop-blur shadow-sm">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold clay-pill bg-white/90 dark:bg-navy-900/90 text-navy-900 dark:text-white backdrop-blur shadow-sm">
                       {school.type}
                     </span>
                   </div>
@@ -76,7 +76,7 @@ export const HomeSchoolsSection: React.FC = () => {
                     {school.clubs.slice(0, 3).map((club, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 rounded bg-gray-100 dark:bg-navy-800 text-[10px] text-gray-600 dark:text-gray-300"
+                        className="px-2.5 py-0.5 rounded-full clay-pill bg-gray-100 dark:bg-navy-800 text-[10px] font-semibold text-gray-600 dark:text-gray-300"
                       >
                         {club}
                       </span>
@@ -88,7 +88,7 @@ export const HomeSchoolsSection: React.FC = () => {
               <div className="px-5 pb-5 pt-2">
                 <Link
                   href="/schools"
-                  className="w-full py-2 rounded-xl bg-gray-50 dark:bg-navy-800 hover:bg-gold/20 text-navy-900 dark:text-white hover:text-gold text-xs font-bold transition-colors flex items-center justify-center gap-1"
+                  className="w-full py-2.5 rounded-xl clay-btn-surface text-xs font-bold transition-all flex items-center justify-center gap-1"
                 >
                   <span>Дэлгэрэнгүй үзэх</span>
                   <ArrowRight className="w-3.5 h-3.5" />

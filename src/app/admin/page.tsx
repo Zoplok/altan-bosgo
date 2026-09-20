@@ -81,7 +81,7 @@ export default function AdminPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-200 dark:border-navy-800 mb-6 text-xs font-bold">
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 text-xs font-bold">
           {[
             { id: 'universities', label: `Их сургуулиуд (${unis.length})`, icon: Building },
             { id: 'schools', label: `ЕБС Сургуулиуд (${SCHOOLS.length})`, icon: SchoolIcon },
@@ -94,10 +94,10 @@ export default function AdminPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as AdminTab)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl transition-all ${
                   activeTab === tab.id
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 shadow-sm'
-                    : 'bg-white dark:bg-navy-900 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-navy-800'
+                    ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                    : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -110,13 +110,13 @@ export default function AdminPage() {
         {/* Universities Tab */}
         {activeTab === 'universities' && (
           <div className="space-y-6">
-            <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 overflow-hidden shadow-sm">
-              <div className="p-5 border-b border-gray-200 dark:border-navy-800 flex items-center justify-between">
+            <div className="clay-card overflow-hidden">
+              <div className="p-5 sm:p-6 border-b border-gray-200 dark:border-navy-800/80 flex items-center justify-between">
                 <div>
-                  <h3 className="font-bold text-base text-navy-900 dark:text-white">
+                  <h3 className="font-bold text-base text-navy-900 dark:text-white font-display">
                     Их, дээд сургуулиудын баталгаажуулалтын жагсаалт
                   </h3>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 font-medium">
                     Статусыг шууд өөрчлөх, эх сурвалж болон босго оноог засах боломжтой
                   </p>
                 </div>
@@ -195,23 +195,23 @@ export default function AdminPage() {
               <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
                 <form
                   onSubmit={handleUpdateScoresAndTuition}
-                  className="bg-white dark:bg-navy-900 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-gold/30 space-y-4 text-xs"
+                  className="clay-card max-w-xl w-full p-6 sm:p-8 shadow-2xl border-gold/40 space-y-4 text-xs animate-in zoom-in-95"
                 >
-                  <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-navy-800">
-                    <h3 className="font-bold text-base text-navy-900 dark:text-white">
+                  <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-navy-800/80">
+                    <h3 className="font-bold text-base text-navy-900 dark:text-white font-display">
                       {editingUni.name} ({editingUni.shortName}) засах
                     </h3>
                     <button
                       type="button"
                       onClick={() => setEditingUni(null)}
-                      className="text-gray-400 hover:text-white"
+                      className="p-1.5 rounded-xl clay-btn-surface text-gray-400 hover:text-white"
                     >
                       ✕
                     </button>
                   </div>
 
                   <div>
-                    <label className="font-semibold text-gray-500 block mb-1">
+                    <label className="font-bold text-gray-600 dark:text-gray-300 block mb-1">
                       Хамгийн бага босго оноо:
                     </label>
                     <input
@@ -226,12 +226,12 @@ export default function AdminPage() {
                           },
                         })
                       }
-                      className="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-navy-900 dark:text-white font-bold"
+                      className="w-full px-3.5 py-2.5 rounded-xl clay-input text-navy-900 dark:text-white font-bold"
                     />
                   </div>
 
                   <div>
-                    <label className="font-semibold text-gray-500 block mb-1">
+                    <label className="font-bold text-gray-600 dark:text-gray-300 block mb-1">
                       1 кредит цагийн үнэ (төгрөгөөр):
                     </label>
                     <input
@@ -246,12 +246,12 @@ export default function AdminPage() {
                           },
                         })
                       }
-                      className="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-navy-900 dark:text-white font-bold"
+                      className="w-full px-3.5 py-2.5 rounded-xl clay-input text-navy-900 dark:text-white font-bold"
                     />
                   </div>
 
                   <div>
-                    <label className="font-semibold text-gray-500 block mb-1">
+                    <label className="font-bold text-gray-600 dark:text-gray-300 block mb-1">
                       Эх сурвалжийн нэр:
                     </label>
                     <input
@@ -266,12 +266,12 @@ export default function AdminPage() {
                           },
                         })
                       }
-                      className="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-navy-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-xl clay-input text-navy-900 dark:text-white"
                     />
                   </div>
 
                   <div>
-                    <label className="font-semibold text-gray-500 block mb-1">
+                    <label className="font-bold text-gray-600 dark:text-gray-300 block mb-1">
                       Эх сурвалжийн URL:
                     </label>
                     <input
@@ -286,21 +286,21 @@ export default function AdminPage() {
                           },
                         })
                       }
-                      className="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-navy-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-xl clay-input text-navy-900 dark:text-white"
                     />
                   </div>
 
-                  <div className="flex justify-end gap-2 pt-4 border-t border-gray-200 dark:border-navy-800">
+                  <div className="flex justify-end gap-2.5 pt-4 border-t border-gray-200 dark:border-navy-800/80">
                     <button
                       type="button"
                       onClick={() => setEditingUni(null)}
-                      className="px-4 py-2 rounded-xl border border-gray-200 dark:border-navy-700 text-gray-500 font-bold"
+                      className="clay-btn-surface px-4 py-2.5 rounded-xl text-gray-700 dark:text-gray-300 font-bold"
                     >
                       Цуцлах
                     </button>
                     <button
                       type="submit"
-                      className="px-5 py-2 rounded-xl bg-gold text-navy-900 font-bold shadow-md"
+                      className="clay-btn-gold px-6 py-2.5 rounded-xl text-navy-950 font-bold"
                     >
                       Хадгалах
                     </button>
@@ -313,15 +313,15 @@ export default function AdminPage() {
 
         {/* Schools, Majors, Scholarships & News tabs previews */}
         {activeTab !== 'universities' && (
-          <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-8 text-center text-xs text-gray-500">
-            <CheckCircle className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
-            <p className="font-bold text-sm text-navy-900 dark:text-white">
+          <div className="clay-card p-10 text-center text-xs text-gray-500">
+            <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
+            <p className="font-bold text-base text-navy-900 dark:text-white font-display">
               {activeTab === 'schools' && 'ЕБС сургуулиудын өгөгдлийн бааз баталгаажсан'}
               {activeTab === 'majors' && 'Мэргэжлийн 100+ ангиллын бүртгэл идэвхтэй'}
               {activeTab === 'scholarships' && 'Тэтгэлэгт хөтөлбөрүүдийн хугацаа шинэчлэгдсэн'}
               {activeTab === 'news' && 'Мэдээ нийтлэлийн систем ажиллаж байна'}
             </p>
-            <span className="text-gray-400 mt-1 block">
+            <span className="text-gray-400 mt-1.5 block font-medium">
               Шинэ бичлэг нэмэх болон баталгаажуулах эрх нээлттэй.
             </span>
           </div>

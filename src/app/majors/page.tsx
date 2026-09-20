@@ -3,18 +3,19 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { MAJORS, getUniversityById } from '@/lib/data';
+import { useAuth } from '@/context/AuthContext';
 import {
   Search,
   Compass,
   GraduationCap,
   Briefcase,
-  BookOpen,
   ArrowRight,
   TrendingUp,
-  Sparkles,
+  Bookmark,
 } from 'lucide-react';
 
 export default function MajorsPage() {
+  const { toggleSaveMajor, isSavedMajor } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -67,7 +68,7 @@ export default function MajorsPage() {
         </div>
 
         {/* Search & Category Filter */}
-        <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-5 shadow-sm mb-8 space-y-4">
+        <div className="clay-card p-5 sm:p-6 mb-8 space-y-4">
           <div className="relative">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -75,20 +76,20 @@ export default function MajorsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Мэргэжлийн нэрээр хайх (жнь: Эмч, Инженер, Программист, Багш, Хуульч)..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-sm text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+              className="w-full pl-10 pr-4 py-2.5 rounded-2xl clay-input text-sm text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50"
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-100 dark:border-navy-800 text-xs">
-            <span className="font-semibold text-gray-500 dark:text-gray-400 mr-1">Чиглэл:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-200/60 dark:border-navy-800/80 text-xs">
+            <span className="font-bold text-gray-600 dark:text-gray-300 mr-1">Чиглэл:</span>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-lg transition-colors font-medium ${
+                className={`px-3.5 py-1.5 rounded-xl transition-all text-xs ${
                   selectedCategory === cat
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 font-bold'
-                    : 'bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                    ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                    : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
                 }`}
               >
                 {cat === 'all' ? 'Бүх салбар' : cat}
@@ -100,6 +101,7 @@ export default function MajorsPage() {
         {/* Majors List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredMajors.map((major) => {
+            const saved = isSavedMajor(major.id);
             const universities = major.offeringUniversityIds
               .map((id) => getUniversityById(id))
               .filter(Boolean);
@@ -107,34 +109,47 @@ export default function MajorsPage() {
             return (
               <div
                 key={major.id}
-                className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-6 shadow-sm hover:shadow-xl hover:border-gold transition-all duration-300 flex flex-col justify-between"
+                className="clay-card clay-card-hover p-6 sm:p-7 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-gold/15 text-gold-700 dark:text-gold">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-gold/15 text-gold-700 dark:text-gold border border-gold/30 shadow-inner">
                       {major.category}
                     </span>
-                    <span className="text-xs text-gray-500 flex items-center gap-1 font-semibold">
-                      <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-                      {major.trendScore}% Эрэлттэй
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-bold">
+                        <TrendingUp className="w-3.5 h-3.5" />
+                        {major.trendScore}% Эрэлттэй
+                      </span>
+                      <button
+                        onClick={() => toggleSaveMajor(major.id)}
+                        className={`p-2 rounded-xl transition-all ${
+                          saved
+                            ? 'clay-btn-gold text-navy-950'
+                            : 'clay-btn-surface text-gray-400 hover:text-navy-900 dark:hover:text-white'
+                        }`}
+                        title={saved ? 'Хадгалсан' : 'Хадгалах'}
+                      >
+                        <Bookmark className={`w-3.5 h-3.5 ${saved ? 'fill-current' : ''}`} />
+                      </button>
+                    </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-2">
+                  <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-2 font-display">
                     {major.name}
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 font-medium">
                     {major.description}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
-                    <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl border border-gray-100 dark:border-navy-800">
-                      <span className="font-bold text-gray-500 block mb-1">Шаардагдах ЭЕШ:</span>
+                    <div className="clay-recessed p-3.5 rounded-2xl">
+                      <span className="font-bold text-gray-500 dark:text-gray-400 block mb-1">Шаардагдах ЭЕШ:</span>
                       <div className="flex flex-wrap gap-1">
                         {major.requiredExams.map((ex, i) => (
                           <span
                             key={i}
-                            className="px-2 py-0.5 rounded bg-white dark:bg-navy-900 border border-gray-200 dark:border-navy-700 text-[11px] font-semibold text-navy-900 dark:text-white"
+                            className="px-2 py-0.5 rounded-lg bg-white dark:bg-navy-900 border border-gray-200 dark:border-navy-700 text-[11px] font-bold text-navy-900 dark:text-white shadow-sm"
                           >
                             {ex}
                           </span>
@@ -142,8 +157,8 @@ export default function MajorsPage() {
                       </div>
                     </div>
 
-                    <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl border border-gray-100 dark:border-navy-800">
-                      <span className="font-bold text-gray-500 block mb-1">Суралцах хугацаа:</span>
+                    <div className="clay-recessed p-3.5 rounded-2xl">
+                      <span className="font-bold text-gray-500 dark:text-gray-400 block mb-1">Суралцах хугацаа:</span>
                       <span className="text-sm font-extrabold text-navy-900 dark:text-white">
                         {major.durationYears} жил (Бакалавр)
                       </span>
@@ -151,11 +166,11 @@ export default function MajorsPage() {
                   </div>
 
                   <div className="mb-4">
-                    <span className="text-xs font-bold text-gray-500 block mb-1.5 flex items-center gap-1">
+                    <span className="text-xs font-bold text-gray-600 dark:text-gray-300 block mb-1.5 flex items-center gap-1">
                       <Briefcase className="w-3.5 h-3.5 text-gold" />
                       Ажиллах боломжит чиглэлүүд:
                     </span>
-                    <ul className="space-y-1 text-xs text-gray-600 dark:text-gray-300">
+                    <ul className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
                       {major.careerDirections.map((dir, i) => (
                         <li key={i} className="flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
@@ -166,7 +181,7 @@ export default function MajorsPage() {
                   </div>
 
                   <div>
-                    <span className="text-xs font-bold text-gray-500 block mb-1.5 flex items-center gap-1">
+                    <span className="text-xs font-bold text-gray-600 dark:text-gray-300 block mb-1.5 flex items-center gap-1">
                       <GraduationCap className="w-3.5 h-3.5 text-gold" />
                       Энэ мэргэжлийг санал болгодог их сургуулиуд:
                     </span>
@@ -175,7 +190,7 @@ export default function MajorsPage() {
                         <Link
                           key={u?.id}
                           href={`/universities/${u?.id}`}
-                          className="px-2.5 py-1 rounded-lg bg-gray-50 dark:bg-navy-800 hover:bg-gold hover:text-navy-900 border border-gray-200 dark:border-navy-700 text-xs font-semibold text-navy-900 dark:text-white transition-colors"
+                          className="px-3 py-1 rounded-xl clay-btn-surface text-xs font-bold text-navy-900 dark:text-white hover:text-gold dark:hover:text-gold"
                         >
                           {u?.name} ({u?.shortName})
                         </Link>
@@ -184,10 +199,10 @@ export default function MajorsPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-navy-800 flex justify-end">
+                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-navy-800/80 flex justify-end">
                   <Link
                     href={`/universities?search=${encodeURIComponent(major.name)}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 dark:text-gold hover:underline"
+                    className="clay-btn-surface px-4 py-2 rounded-xl inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 dark:text-gold hover:text-gold"
                   >
                     <span>Энэ мэргэжлийг санал болгодог сургуулиудыг харах</span>
                     <ArrowRight className="w-3.5 h-3.5" />

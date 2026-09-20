@@ -37,20 +37,20 @@ export const HomeCalendarSection: React.FC = () => {
           {events.map((evt) => (
             <div
               key={evt.id}
-              className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-5 shadow-sm hover:shadow-md hover:border-gold transition-all duration-300 flex flex-col justify-between"
+              className="clay-card clay-card-hover p-5 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span
-                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                    className={`text-[10px] font-bold px-2.5 py-1 rounded-full shadow-inner ${
                       evt.status === 'ACTIVE'
-                        ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400'
-                        : 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-400'
+                        ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/60'
+                        : 'bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-300 dark:border-blue-700/60'
                     }`}
                   >
-                    {evt.status === 'ACTIVE' ? '● Идэвхтэй явагдаж байна' : 'Хүлээгдэж буй'}
+                    {evt.status === 'ACTIVE' ? '● Идэвхтэй' : 'Хүлээгдэж буй'}
                   </span>
-                  <span className="text-[10px] font-semibold text-gray-400">{evt.category}</span>
+                  <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-navy-800 px-2 py-0.5 rounded-full">{evt.category}</span>
                 </div>
 
                 <div className="flex items-center gap-1.5 text-gold-700 dark:text-gold text-xs font-extrabold mb-1.5">
@@ -70,12 +70,12 @@ export const HomeCalendarSection: React.FC = () => {
               </div>
 
               {evt.officialUrl && (
-                <div className="mt-4 pt-3 border-t border-gray-100 dark:border-navy-800">
+                <div className="mt-4 pt-3 border-t border-gray-100 dark:border-navy-800/80">
                   <a
                     href={evt.officialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gold"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-navy-800 dark:text-gold-400 hover:text-gold transition-colors"
                   >
                     <span>Албан ёсны систем</span>
                     <ExternalLink className="w-3 h-3" />

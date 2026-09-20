@@ -38,11 +38,11 @@ export const HomeScholarshipsSection: React.FC = () => {
           {featured.map((sch) => (
             <div
               key={sch.id}
-              className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-6 shadow-sm hover:shadow-xl hover:border-gold transition-all duration-300 flex flex-col justify-between"
+              className="clay-card clay-card-hover p-6 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[11px] font-bold px-3 py-1 rounded-full clay-pill bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
                     {sch.category}
                   </span>
                   <VerificationBadge verification={sch.verification} size="sm" />
@@ -51,21 +51,21 @@ export const HomeScholarshipsSection: React.FC = () => {
                 <h3 className="font-bold text-base text-navy-900 dark:text-white mb-1.5 line-clamp-2">
                   {sch.title}
                 </h3>
-                <p className="text-xs text-gray-400 mb-3">{sch.organization}</p>
+                <p className="text-xs text-gray-400 mb-3.5">{sch.organization}</p>
 
-                <div className="p-3 bg-gray-50 dark:bg-navy-950 rounded-xl border border-gray-100 dark:border-navy-800/80 mb-4 text-xs">
-                  <span className="font-semibold text-gold block mb-1">Хамрах хүрээ:</span>
+                <div className="p-3.5 clay-recessed mb-4 text-xs">
+                  <span className="font-bold text-gold block mb-1">Хамрах хүрээ:</span>
                   <p className="text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
                     {sch.coverage}
                   </p>
                 </div>
 
-                <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
+                <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1.5">
                   <div>
                     <span className="font-semibold text-navy-900 dark:text-gray-200">Хэн хамрагдах:</span>{' '}
                     {sch.targetAudience}
                   </div>
-                  <div className="flex items-center gap-1 text-gold-700 dark:text-gold font-medium pt-1">
+                  <div className="flex items-center gap-1.5 text-gold-700 dark:text-gold font-bold pt-1">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Эцсийн хугацаа: {sch.deadline}</span>
                   </div>
@@ -75,7 +75,7 @@ export const HomeScholarshipsSection: React.FC = () => {
               <div className="mt-6 pt-4 border-t border-gray-100 dark:border-navy-800 flex items-center justify-between">
                 <Link
                   href="/scholarships"
-                  className="text-xs font-bold text-navy-900 dark:text-white hover:text-gold"
+                  className="text-xs font-bold text-navy-900 dark:text-white hover:text-gold transition-colors"
                 >
                   Шаардлага үзэх
                 </Link>
@@ -83,7 +83,7 @@ export const HomeScholarshipsSection: React.FC = () => {
                   href={sch.applyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-gold hover:underline"
+                  className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl clay-btn-gold text-xs font-bold shadow-sm"
                 >
                   <span>Материал илгээх</span>
                   <ExternalLink className="w-3 h-3" />

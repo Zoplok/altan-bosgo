@@ -53,7 +53,7 @@ export default function ComparePage() {
             {compareIds.length > 0 && (
               <button
                 onClick={clearComparison}
-                className="px-4 py-2 rounded-xl border border-gray-300 dark:border-navy-700 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors"
+                className="clay-btn-surface px-4 py-2 rounded-2xl text-xs font-semibold text-gray-700 dark:text-gray-200 hover:text-red-500 transition-colors"
               >
                 Бүгдийг цэвэрлэх
               </button>
@@ -63,14 +63,14 @@ export default function ComparePage() {
               <div className="relative">
                 <button
                   onClick={() => setSelectorOpen(!selectorOpen)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gold hover:bg-gold-400 text-navy-900 font-bold text-xs shadow-sm transition-all"
+                  className="clay-btn-gold px-4 py-2.5 rounded-2xl text-navy-950 font-bold text-xs inline-flex items-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Сургууль нэмэх ({compareIds.length}/3)</span>
                 </button>
 
                 {selectorOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-navy-900 rounded-2xl shadow-xl border border-gray-200 dark:border-navy-800 p-3 z-30 space-y-1 animate-in fade-in-50">
+                  <div className="absolute right-0 top-full mt-2 w-72 clay-card p-3 z-30 space-y-1 animate-in fade-in-50">
                     <span className="text-[11px] font-bold text-gray-400 block px-2 mb-1">
                       Сонгох их сургууль:
                     </span>
@@ -81,7 +81,7 @@ export default function ComparePage() {
                           addUniversity(uni.id);
                           setSelectorOpen(false);
                         }}
-                        className="w-full text-left px-2.5 py-2 rounded-lg text-xs font-semibold text-navy-900 dark:text-white hover:bg-gray-100 dark:hover:bg-navy-800 transition-colors flex items-center justify-between"
+                        className="w-full text-left px-2.5 py-2 rounded-xl text-xs font-semibold text-navy-900 dark:text-white hover:bg-gold/15 dark:hover:bg-navy-800 transition-colors flex items-center justify-between"
                       >
                         <span className="truncate">{uni.name} ({uni.shortName})</span>
                         <span className="text-gold text-[10px] font-bold">Нэмэх +</span>
@@ -96,7 +96,7 @@ export default function ComparePage() {
 
         {/* If no universities selected */}
         {selectedUnis.length === 0 ? (
-          <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-12 text-center max-w-xl mx-auto shadow-sm">
+          <div className="clay-card p-12 text-center max-w-xl mx-auto">
             <Scale className="w-16 h-16 text-gold mx-auto mb-4" />
             <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-2">
               Харьцуулах сургууль сонгогдоогүй байна
@@ -104,20 +104,20 @@ export default function ComparePage() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
               Их сургуулиудын жагсаалтаас сонирхсон сургуулиудынхаа &ldquo;Харьцуулах&rdquo; товчийг дарж энэхүү матрицад оруулаарай.
             </p>
-            <div className="flex justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <button
                 onClick={() => {
                   addUniversity('num');
                   addUniversity('must');
                   addUniversity('mnums');
                 }}
-                className="px-4 py-2.5 rounded-xl bg-gold text-navy-900 font-bold text-xs shadow"
+                className="clay-btn-gold px-4 py-2.5 rounded-2xl text-navy-950 font-bold text-xs"
               >
                 Жишээ 3 сургууль оруулах (МУИС, ШУТИС, АШУҮИС)
               </button>
               <Link
                 href="/universities"
-                className="px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-navy-800 text-navy-900 dark:text-white font-semibold text-xs"
+                className="clay-btn-surface px-4 py-2.5 rounded-2xl text-navy-900 dark:text-white font-semibold text-xs"
               >
                 Сургуулиуд үзэх
               </Link>
@@ -125,7 +125,7 @@ export default function ComparePage() {
           </div>
         ) : (
           /* Comparison Matrix Table */
-          <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 shadow-xl overflow-hidden">
+          <div className="clay-card overflow-hidden p-1">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>

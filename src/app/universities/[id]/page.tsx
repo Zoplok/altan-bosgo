@@ -113,27 +113,29 @@ export default function UniversityDetailPage() {
 
       {/* Header Profile Info Card */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
-        <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-6 sm:p-8 shadow-xl">
+        <div className="clay-card p-6 sm:p-8">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-white dark:bg-navy-950 border-2 border-gold/40 shadow-md shrink-0">
-                <Image
-                  src={university.logo}
-                  alt={university.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-3xl overflow-hidden bg-white dark:bg-navy-950 border-2 border-gold/40 shadow-[inset_0_2px_4px_rgba(255,255,255,0.6),0_6px_12px_rgba(0,0,0,0.1)] shrink-0 p-2 flex items-center justify-center">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                  <Image
+                    src={university.logo}
+                    alt={university.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               </div>
 
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-navy-900 text-white dark:bg-gold dark:text-navy-900">
+                  <span className="px-3.5 py-1 rounded-full text-xs font-extrabold bg-navy-900 text-white dark:bg-gold dark:text-navy-950 shadow-sm">
                     {university.type} өмчит
                   </span>
                   <VerificationBadge verification={university.verification} size="md" />
                   {university.rankingText && (
-                    <span className="text-xs text-gold-700 dark:text-gold font-medium">
+                    <span className="text-xs text-gold-700 dark:text-gold font-bold">
                       ★ {university.rankingText}
                     </span>
                   )}
@@ -142,11 +144,11 @@ export default function UniversityDetailPage() {
                 <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-navy-900 dark:text-white leading-tight">
                   {university.name} ({university.shortName})
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
                   {university.englishName}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-600 dark:text-gray-300">
+                <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-600 dark:text-gray-300 font-medium">
                   <div className="flex items-center gap-1.5">
                     <MapPin className="w-4 h-4 text-gold shrink-0" />
                     <span>{university.location}</span>
@@ -157,7 +159,7 @@ export default function UniversityDetailPage() {
                       href={university.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:underline flex items-center gap-0.5"
+                      className="hover:underline flex items-center gap-0.5 text-gold font-semibold"
                     >
                       <span>Албан ёсны вэб</span>
                       <ExternalLink className="w-3 h-3" />
@@ -168,17 +170,17 @@ export default function UniversityDetailPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-2.5 self-stretch sm:self-auto shrink-0">
+            <div className="flex flex-wrap items-center gap-3 self-stretch sm:self-auto shrink-0">
               <button
                 type="button"
                 onClick={() => {
                   if (comparing) removeUniversity(university.id);
                   else addUniversity(university.id);
                 }}
-                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold transition-all ${
                   comparing
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 shadow-md'
-                    : 'bg-gray-100 dark:bg-navy-800 text-navy-900 dark:text-white hover:bg-gray-200'
+                    ? 'clay-btn-gold text-navy-950'
+                    : 'clay-btn-surface text-navy-900 dark:text-white'
                 }`}
               >
                 <Scale className="w-4 h-4" />
@@ -188,10 +190,10 @@ export default function UniversityDetailPage() {
               <button
                 type="button"
                 onClick={() => toggleSaveUniversity(university.id)}
-                className={`p-2.5 rounded-xl border transition-colors ${
+                className={`p-3 rounded-2xl transition-all ${
                   saved
-                    ? 'bg-gold/10 border-gold text-gold-700 dark:text-gold'
-                    : 'border-gray-200 dark:border-navy-700 text-gray-500 hover:text-navy-900 dark:hover:text-white'
+                    ? 'clay-btn-gold text-navy-950'
+                    : 'clay-btn-surface text-gray-400 hover:text-navy-900 dark:hover:text-white'
                 }`}
                 title={saved ? 'Хадгалсан' : 'Хадгалах'}
               >
@@ -202,7 +204,7 @@ export default function UniversityDetailPage() {
                 href={university.admissionWebsite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-400 text-navy-900 text-xs font-extrabold shadow-md transition-all"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-6 py-3 rounded-2xl clay-btn-gold text-navy-950 text-xs font-extrabold"
               >
                 <span>Элсэлтийн систем</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -211,27 +213,27 @@ export default function UniversityDetailPage() {
           </div>
 
           {/* Quick Metrics Ticker */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-gray-100 dark:border-navy-800 text-center">
-            <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl">
-              <span className="text-[10px] text-gray-400 block uppercase">Үүсгэн байгуулагдсан</span>
+          <div className="clay-recessed grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 p-4 rounded-2xl text-center">
+            <div className="p-3 bg-white/60 dark:bg-navy-900/60 rounded-xl">
+              <span className="text-[10px] text-gray-400 block uppercase font-medium">Үүсгэн байгуулагдсан</span>
               <span className="text-base font-extrabold text-navy-900 dark:text-white">
                 {university.foundedYear} он
               </span>
             </div>
-            <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl">
-              <span className="text-[10px] text-gray-400 block uppercase">Нийт оюутан</span>
+            <div className="p-3 bg-white/60 dark:bg-navy-900/60 rounded-xl">
+              <span className="text-[10px] text-gray-400 block uppercase font-medium">Нийт оюутан</span>
               <span className="text-base font-extrabold text-navy-900 dark:text-white">
                 {university.studentCount.toLocaleString()}+
               </span>
             </div>
-            <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl">
-              <span className="text-[10px] text-gray-400 block uppercase">Хөтөлбөр (Бакалавр)</span>
+            <div className="p-3 bg-white/60 dark:bg-navy-900/60 rounded-xl">
+              <span className="text-[10px] text-gray-400 block uppercase font-medium">Хөтөлбөр (Бакалавр)</span>
               <span className="text-base font-extrabold text-navy-900 dark:text-white">
                 {university.programCount}
               </span>
             </div>
-            <div className="p-3 bg-surface-light-subtle dark:bg-navy-950 rounded-xl">
-              <span className="text-[10px] text-gray-400 block uppercase">ЭЕШ босго оноо</span>
+            <div className="p-3 bg-white/60 dark:bg-navy-900/60 rounded-xl">
+              <span className="text-[10px] text-gray-400 block uppercase font-medium">ЭЕШ босго оноо</span>
               <span className="text-base font-extrabold text-gold">
                 {university.highlightScores.minScore}+
               </span>
@@ -242,7 +244,7 @@ export default function UniversityDetailPage() {
 
       {/* Interactive Tabs Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-gray-200 dark:border-navy-800">
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 pt-1">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.key;
@@ -250,10 +252,10 @@ export default function UniversityDetailPage() {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all shrink-0 ${
                   isActive
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 shadow-sm'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-navy-900 dark:hover:text-white hover:bg-white dark:hover:bg-navy-900'
+                    ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                    : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -268,7 +270,7 @@ export default function UniversityDetailPage() {
           {/* 1. Ерөнхий мэдээлэл */}
           {activeTab === 'general' && (
             <div className="space-y-6">
-              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+              <div className="clay-card p-6 sm:p-8">
                 <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-3 flex items-center gap-2">
                   <Building className="w-5 h-5 text-gold" />
                   <span>Их сургуулийн танилцуулга</span>
@@ -290,7 +292,7 @@ export default function UniversityDetailPage() {
               </div>
 
               {/* Faculties list */}
-              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+              <div className="clay-card p-6 sm:p-8">
                 <h3 className="text-base font-bold text-navy-900 dark:text-white mb-4">
                   Салбар сургууль ба тэнхимүүд
                 </h3>
@@ -313,7 +315,7 @@ export default function UniversityDetailPage() {
 
           {/* 2. Мэргэжил */}
           {activeTab === 'majors' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-gold" />
@@ -361,7 +363,7 @@ export default function UniversityDetailPage() {
           {/* 3. Элсэлт */}
           {activeTab === 'admission' && (
             <div className="space-y-6">
-              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+              <div className="clay-card p-6 sm:p-8">
                 <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
                   <FileCheck className="w-5 h-5 text-gold" />
                   <span>Элсэлтийн ерөнхий шаардлага ба хуваарь</span>
@@ -419,7 +421,7 @@ export default function UniversityDetailPage() {
 
           {/* 4. Босго оноо */}
           {activeTab === 'threshold' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <div>
                   <h2 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2">
@@ -462,7 +464,7 @@ export default function UniversityDetailPage() {
 
           {/* 5. Төлбөр */}
           {activeTab === 'tuition' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <div>
                   <h2 className="text-lg font-bold text-navy-900 dark:text-white flex items-center gap-2">
@@ -505,7 +507,7 @@ export default function UniversityDetailPage() {
 
           {/* 6. Тэтгэлэг */}
           {activeTab === 'scholarships' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
                 <Award className="w-5 h-5 text-gold" />
                 <span>Олгогдох тэтгэлэгт хөтөлбөрүүд</span>
@@ -530,7 +532,7 @@ export default function UniversityDetailPage() {
 
           {/* 7. Дотуур байр */}
           {activeTab === 'dormitory' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
                 <Home className="w-5 h-5 text-gold" />
                 <span>Оюутны дотуур байрны мэдээлэл</span>
@@ -571,7 +573,7 @@ export default function UniversityDetailPage() {
           {/* 8. Мэдээ & Түгээмэл асуултууд */}
           {activeTab === 'news' && (
             <div className="space-y-6">
-              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+              <div className="clay-card p-6 sm:p-8">
                 <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-gold" />
                   <span>Түгээмэл асуулт хариулт (FAQ)</span>
@@ -605,7 +607,7 @@ export default function UniversityDetailPage() {
 
           {/* 9. Холбоо барих */}
           {activeTab === 'contact' && (
-            <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-6 shadow-sm">
+            <div className="clay-card p-6 sm:p-8">
               <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4 flex items-center gap-2">
                 <Phone className="w-5 h-5 text-gold" />
                 <span>Холбоо барих хаяг & Элсэлтийн алба</span>

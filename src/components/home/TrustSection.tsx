@@ -22,25 +22,31 @@ export const TrustSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto shrink-0">
-            <div className="flex items-center gap-3 p-3.5 bg-navy-900/80 rounded-xl border border-navy-700/80">
-              <Link2 className="w-5 h-5 text-gold shrink-0" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto shrink-0">
+            <div className="flex items-center gap-3 p-4 bg-navy-900/90 rounded-2xl border border-navy-700/80 shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.05),inset_2px_2px_6px_rgba(0,0,0,0.5),0_8px_16px_rgba(0,0,0,0.25)]">
+              <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center shrink-0 border border-gold/40">
+                <Link2 className="w-5 h-5 text-gold" />
+              </div>
               <div>
                 <span className="text-xs font-bold text-white block">✓ Эх сурвалжтай</span>
                 <span className="text-[10px] text-gray-400">Шууд холбоос дагалдана</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3.5 bg-navy-900/80 rounded-xl border border-navy-700/80">
-              <CalendarCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-3 p-4 bg-navy-900/90 rounded-2xl border border-navy-700/80 shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.05),inset_2px_2px_6px_rgba(0,0,0,0.5),0_8px_16px_rgba(0,0,0,0.25)]">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 border border-emerald-500/40">
+                <CalendarCheck className="w-5 h-5 text-emerald-400" />
+              </div>
               <div>
                 <span className="text-xs font-bold text-white block">✓ Шинэчлэгдсэн</span>
                 <span className="text-[10px] text-gray-400">Огноог ил тод харуулна</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3.5 bg-navy-900/80 rounded-xl border border-navy-700/80">
-              <CheckCircle className="w-5 h-5 text-blue-400 shrink-0" />
+            <div className="flex items-center gap-3 p-4 bg-navy-900/90 rounded-2xl border border-navy-700/80 shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.05),inset_2px_2px_6px_rgba(0,0,0,0.5),0_8px_16px_rgba(0,0,0,0.25)]">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0 border border-blue-500/40">
+                <CheckCircle className="w-5 h-5 text-blue-400" />
+              </div>
               <div>
                 <span className="text-xs font-bold text-white block">✓ Баталгаажуулалт</span>
                 <span className="text-[10px] text-gray-400">3 түвшний шалгалттай</span>

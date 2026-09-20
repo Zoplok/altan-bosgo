@@ -42,11 +42,11 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-navy-900/95 backdrop-blur-md border-b border-gray-100 dark:border-navy-800 transition-colors">
+    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-navy-900/95 backdrop-blur-md border-b border-gray-100 dark:border-navy-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand Logo & Name */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="relative w-11 h-11 rounded-xl overflow-hidden shadow-sm ring-1 ring-gold/30 group-hover:ring-gold transition-all duration-300">
+          <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-clay-btn dark:shadow-clay-card-dark ring-2 ring-gold/40 group-hover:ring-gold transition-all duration-300 transform group-hover:scale-105">
             <Image
               src="/images/logo.png"
               alt="Алтан босго лого"
@@ -56,10 +56,10 @@ export const Navbar: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-display font-bold text-xl tracking-tight text-navy-900 dark:text-white leading-none group-hover:text-gold transition-colors">
+            <span className="font-display font-black text-xl tracking-tight text-navy-900 dark:text-white leading-none group-hover:text-gold transition-colors">
               АЛТАН БОСГО
             </span>
-            <span className="text-[11px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-1">
+            <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-1">
               Боловсролын нэгдсэн сан
             </span>
           </div>
@@ -73,10 +73,10 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all ${
                   isActive
-                    ? 'text-navy-900 dark:text-gold font-semibold bg-gray-50 dark:bg-navy-800/80 shadow-sm'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-navy-900 dark:hover:text-white hover:bg-gray-50/80 dark:hover:bg-navy-800/50'
+                    ? 'text-navy-900 dark:text-gold bg-gold/15 dark:bg-gold/15 clay-pill border border-gold/30'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-navy-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-navy-800/60'
                 }`}
               >
                 {link.label}
@@ -90,10 +90,10 @@ export const Navbar: React.FC = () => {
           {/* Quick Search Button */}
           <Link
             href="/#search-section"
-            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-navy-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-navy-800 transition-colors"
+            className="p-2.5 rounded-xl text-gray-600 dark:text-gray-300 hover:text-navy-900 dark:hover:text-white clay-btn-surface transition-all"
             title="Хайлт хийх"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-4 h-4" />
           </Link>
 
           {/* Theme Toggle */}
@@ -103,11 +103,11 @@ export const Navbar: React.FC = () => {
           {compareIds.length > 0 && (
             <Link
               href="/compare"
-              className="relative p-2 rounded-lg text-gold-600 dark:text-gold hover:bg-gold-50 dark:hover:bg-navy-800 transition-colors"
+              className="relative p-2.5 rounded-xl text-gold-700 dark:text-gold clay-btn-surface transition-all"
               title="Харьцуулах сургуулиуд"
             >
-              <Scale className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-gold text-navy-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-sm">
+              <Scale className="w-4 h-4" />
+              <span className="absolute -top-1.5 -right-1.5 bg-gold text-navy-900 text-[10px] font-extrabold rounded-full w-5 h-5 flex items-center justify-center shadow-md border border-white dark:border-navy-900">
                 {compareIds.length}
               </span>
             </Link>
@@ -117,17 +117,17 @@ export const Navbar: React.FC = () => {
           {user ? (
             <Link
               href="/dashboard"
-              className="hidden sm:inline-flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-lg bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-navy-700 text-xs font-semibold text-navy-900 dark:text-white hover:border-gold transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-xl clay-card dark:bg-navy-800 text-xs font-bold text-navy-900 dark:text-white hover:border-gold transition-all"
             >
-              <div className="w-6 h-6 rounded-full bg-gold/20 text-gold-700 dark:text-gold flex items-center justify-center font-bold text-xs">
+              <div className="w-6 h-6 rounded-lg bg-gold/20 text-gold-700 dark:text-gold flex items-center justify-center font-black text-xs shadow-inner">
                 {user.displayName.charAt(0).toUpperCase()}
               </div>
-              <span>{user.displayName}</span>
+              <span className="truncate max-w-[120px]">{user.displayName}</span>
             </Link>
           ) : (
             <Link
               href="/auth/login"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold text-navy-900 font-semibold text-sm shadow-sm hover:bg-gold-400 transition-all hover:-translate-y-0.5"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl clay-btn-gold text-sm shadow-sm transition-all"
             >
               <User className="w-4 h-4" />
               <span>Нэвтрэх</span>
@@ -138,18 +138,18 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-navy-800 transition-colors"
+            className="lg:hidden p-2.5 rounded-xl text-gray-700 dark:text-gray-200 clay-btn-surface transition-all"
             aria-label="Цэс нээх"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Slideout Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 dark:border-navy-800 bg-white dark:bg-navy-950 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col space-y-1">
+        <div className="lg:hidden border-t border-gray-100 dark:border-navy-800 bg-white/95 dark:bg-navy-950/95 backdrop-blur-md px-4 pt-3 pb-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          <div className="flex flex-col space-y-1.5">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -157,9 +157,9 @@ export const Navbar: React.FC = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                     isActive
-                      ? 'bg-gold/10 text-gold-700 dark:text-gold font-bold'
+                      ? 'clay-pill bg-gold/15 text-gold-700 dark:text-gold font-bold border border-gold/30'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-navy-900'
                   }`}
                 >
@@ -173,7 +173,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   href="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-navy-900 dark:bg-navy-800 text-white font-medium text-sm"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl clay-btn-navy text-sm"
                 >
                   <User className="w-4 h-4 text-gold" />
                   <span>Миний хуудас ({user.displayName})</span>
@@ -183,14 +183,14 @@ export const Navbar: React.FC = () => {
                   <Link
                     href="/auth/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-center py-2.5 rounded-lg border border-gray-300 dark:border-navy-700 text-gray-800 dark:text-gray-200 text-sm font-medium"
+                    className="flex items-center justify-center py-2.5 rounded-xl clay-btn-surface text-sm font-bold"
                   >
                     Нэвтрэх
                   </Link>
                   <Link
                     href="/auth/register"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-center py-2.5 rounded-lg bg-gold text-navy-900 text-sm font-bold shadow-sm"
+                    className="flex items-center justify-center py-2.5 rounded-xl clay-btn-gold text-sm font-bold"
                   >
                     Бүртгүүлэх
                   </Link>

@@ -36,7 +36,7 @@ export const VerificationBadge: React.FC<VerificationBadgeProps> = ({
   return (
     <div className="inline-flex flex-col gap-1">
       <div
-        className={`inline-flex items-center gap-1.5 font-medium rounded-full border ${badgeStyle} ${paddingClass} transition-colors`}
+        className={`inline-flex items-center gap-1.5 font-bold rounded-full clay-pill border ${badgeStyle} ${paddingClass} transition-all`}
         title={`Эх сурвалж: ${sourceName} (${lastUpdated})`}
       >
         {icon}

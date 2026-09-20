@@ -31,17 +31,17 @@ export default function CalendarPage() {
 
         {/* Filter Bar */}
         <div className="flex flex-wrap items-center gap-2 mb-8 text-xs">
-          <span className="font-semibold text-gray-500 dark:text-gray-400 mr-1 flex items-center gap-1">
-            <Filter className="w-3.5 h-3.5" /> Ангилал:
+          <span className="font-bold text-gray-600 dark:text-gray-300 mr-1 flex items-center gap-1">
+            <Filter className="w-3.5 h-3.5 text-gold" /> Ангилал:
           </span>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-full transition-colors font-semibold ${
+              className={`px-4 py-2 rounded-2xl transition-all text-xs ${
                 selectedCategory === cat
-                  ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 font-bold'
-                  : 'bg-white dark:bg-navy-900 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-navy-800 hover:bg-gray-50'
+                  ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                  : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
               }`}
             >
               {cat === 'all' ? 'Бүх үйл явдал' : cat}
@@ -55,53 +55,53 @@ export default function CalendarPage() {
             <div key={evt.id} className="relative group">
               {/* Bullet */}
               <div
-                className={`absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 border-white dark:border-navy-900 ${
+                className={`absolute -left-[32px] sm:-left-[41px] top-3 w-5 h-5 rounded-full border-2 border-white dark:border-navy-900 shadow-md ${
                   evt.status === 'ACTIVE'
-                    ? 'bg-emerald-500 ring-4 ring-emerald-500/20 animate-pulse'
+                    ? 'bg-emerald-500 ring-4 ring-emerald-500/30 animate-pulse'
                     : 'bg-gold ring-4 ring-gold/20'
                 }`}
               />
 
-              <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-5 shadow-sm hover:shadow-md hover:border-gold transition-all">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <div className="clay-card clay-card-hover p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-extrabold text-gold">
+                    <span className="font-mono text-sm font-extrabold text-gold-700 dark:text-gold">
                       {evt.startDate} {evt.endDate ? `— ${evt.endDate}` : ''}
                     </span>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-navy-800 text-gray-600 dark:text-gray-300">
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-lg clay-recessed text-gray-600 dark:text-gray-300">
                       {evt.category}
                     </span>
                   </div>
 
                   <span
-                    className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full self-start sm:self-auto ${
+                    className={`text-[10px] font-extrabold px-3 py-1 rounded-full shadow-inner self-start sm:self-auto ${
                       evt.status === 'ACTIVE'
-                        ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
-                        : 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
+                        ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/60'
+                        : 'bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-300 dark:border-blue-700/60'
                     }`}
                   >
                     {evt.status === 'ACTIVE' ? '● Идэвхтэй явагдаж байна' : 'Хүлээгдэж буй'}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-navy-900 dark:text-white mb-2">
+                <h3 className="text-base font-bold text-navy-900 dark:text-white mb-2 font-display">
                   {evt.title}
                 </h3>
 
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed mb-4 font-medium">
                   {evt.description}
                 </p>
 
                 {evt.officialUrl && (
-                  <div className="pt-2 border-t border-gray-100 dark:border-navy-800">
+                  <div className="pt-3 border-t border-gray-100 dark:border-navy-800/80">
                     <a
                       href={evt.officialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-gold hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 dark:text-gold hover:text-gold transition-colors"
                     >
                       <span>Албан ёсны портал руу очих</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 )}

@@ -53,14 +53,14 @@ export const HomeAdmissionSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-surface-light-subtle dark:bg-navy-950 p-6 rounded-2xl border border-gray-200/70 dark:border-navy-800 hover:border-gold dark:hover:border-gold transition-colors duration-300 relative group flex flex-col justify-between"
+                className="clay-card clay-card-hover p-6 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-mono text-2xl font-black text-gray-300 dark:text-navy-700 group-hover:text-gold transition-colors">
                       {item.step}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-gold/15 text-gold-700 dark:text-gold flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-2xl clay-pill bg-gold/15 text-gold-700 dark:text-gold flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
@@ -76,7 +76,7 @@ export const HomeAdmissionSection: React.FC = () => {
           })}
         </div>
 
-        <div className="mt-10 p-4 bg-gold/10 rounded-2xl border border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div className="mt-10 p-5 rounded-3xl clay-pill bg-gold/10 border border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2.5 text-navy-900 dark:text-gray-200">
             <ShieldCheck className="w-5 h-5 text-gold shrink-0" />
             <span>
@@ -85,7 +85,7 @@ export const HomeAdmissionSection: React.FC = () => {
           </div>
           <Link
             href="/calendar"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gold text-navy-900 font-bold shrink-0 hover:bg-gold-400 transition-colors shadow-sm"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl clay-btn-gold text-xs font-bold shrink-0 shadow-sm"
           >
             <span>Элсэлтийн хуанли харах</span>
             <ArrowRight className="w-3.5 h-3.5" />

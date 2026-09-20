@@ -19,7 +19,7 @@ export const MobileNav: React.FC = () => {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-navy-950/95 backdrop-blur-lg border-t border-gray-200 dark:border-navy-800 px-3 py-1.5 shadow-lg">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-navy-950/95 backdrop-blur-md border-t border-gray-200/80 dark:border-navy-800/80 px-3 py-2 shadow-[0_-8px_20px_-4px_rgba(15,23,42,0.08)] dark:shadow-[0_-8px_25px_-4px_rgba(0,0,0,0.6)]">
       <nav className="flex items-center justify-around">
         {items.map((item, idx) => {
           const Icon = item.icon;
@@ -28,9 +28,9 @@ export const MobileNav: React.FC = () => {
             <Link
               key={idx}
               href={item.href}
-              className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-lg transition-colors ${
+              className={`flex flex-col items-center justify-center py-1.5 px-3 rounded-2xl transition-all ${
                 isActive
-                  ? 'text-gold dark:text-gold font-bold'
+                  ? 'clay-pill bg-gold/15 text-gold-700 dark:text-gold font-bold border border-gold/40'
                   : 'text-gray-500 dark:text-gray-400 hover:text-navy-900 dark:hover:text-white'
               }`}
             >

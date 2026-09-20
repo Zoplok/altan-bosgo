@@ -8,11 +8,18 @@ import { onAuthStateChanged, signOut as fbSignOut } from 'firebase/auth';
 interface AuthContextType {
   user: UserProfile | null;
   loading: boolean;
+  guestSavedUnis: string[];
+  guestSavedMajors: string[];
+  guestSavedScholarships: string[];
   login: (email: string, role?: UserProfile['role']) => void;
   register: (name: string, email: string, role: UserProfile['role'], educationLevel: string) => void;
   logout: () => void;
   toggleSaveUniversity: (id: string) => void;
   isSavedUniversity: (id: string) => boolean;
+  toggleSaveMajor: (id: string) => void;
+  isSavedMajor: (id: string) => boolean;
+  toggleSaveScholarship: (id: string) => void;
+  isSavedScholarship: (id: string) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +27,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [guestSavedUnis, setGuestSavedUnis] = useState<string[]>([]);
+  const [guestSavedMajors, setGuestSavedMajors] = useState<string[]>([]);
+  const [guestSavedScholarships, setGuestSavedScholarships] = useState<string[]>([]);
 
   useEffect(() => {
     // Check local storage first
@@ -27,6 +37,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const savedUser = localStorage.getItem('altan_bosgo_user');
       if (savedUser) {
         setUser(JSON.parse(savedUser));
+      }
+      const savedGuestUnis = localStorage.getItem('altan_bosgo_guest_saved');
+      if (savedGuestUnis) {
+        setGuestSavedUnis(JSON.parse(savedGuestUnis));
+      }
+      const savedGuestM = localStorage.getItem('altan_bosgo_guest_majors');
+      if (savedGuestM) {
+        setGuestSavedMajors(JSON.parse(savedGuestM));
+      }
+      const savedGuestS = localStorage.getItem('altan_bosgo_guest_scholarships');
+      if (savedGuestS) {
+        setGuestSavedScholarships(JSON.parse(savedGuestS));
       }
     } catch {
       // ignore
@@ -43,9 +65,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             displayName: fbUser.displayName || 'Суралцагч',
             role: 'STUDENT',
             educationLevel: '12-р анги төгсөгч',
-            savedUniversities: user?.savedUniversities || ['num', 'must'],
-            savedMajors: user?.savedMajors || ['major-se'],
-            savedScholarships: user?.savedScholarships || ['sch-ilgeelt-2100'],
+            savedUniversities: ['num', 'must'],
+            savedMajors: ['major-se'],
+            savedScholarships: ['sch-ilgeelt-2100'],
             createdAt: new Date().toISOString(),
           };
           setUser(profile);
@@ -65,9 +87,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       displayName: email.split('@')[0] || 'Хэрэглэгч',
       role,
       educationLevel: '12-р анги',
-      savedUniversities: ['num', 'must'],
-      savedMajors: ['major-se', 'major-ai'],
-      savedScholarships: ['sch-ilgeelt-2100'],
+      savedUniversities: guestSavedUnis.length > 0 ? guestSavedUnis : ['num', 'must'],
+      savedMajors: guestSavedMajors.length > 0 ? guestSavedMajors : ['major-se', 'major-ai'],
+      savedScholarships: guestSavedScholarships.length > 0 ? guestSavedScholarships : ['sch-ilgeelt-2100'],
       createdAt: new Date().toISOString(),
     };
     setUser(mockUser);
@@ -81,9 +103,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       displayName: name,
       role,
       educationLevel,
-      savedUniversities: ['num'],
-      savedMajors: [],
-      savedScholarships: [],
+      savedUniversities: guestSavedUnis.length > 0 ? guestSavedUnis : ['num'],
+      savedMajors: guestSavedMajors,
+      savedScholarships: guestSavedScholarships,
       createdAt: new Date().toISOString(),
     };
     setUser(newUser);
@@ -100,11 +122,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const toggleSaveUniversity = (id: string) => {
     if (!user) {
-      // Allow guest bookmarks too
-      const guestSaved = JSON.parse(localStorage.getItem('altan_bosgo_guest_saved') || '[]');
-      const updated = guestSaved.includes(id)
-        ? guestSaved.filter((i: string) => i !== id)
-        : [...guestSaved, id];
+      const updated = guestSavedUnis.includes(id)
+        ? guestSavedUnis.filter((i) => i !== id)
+        : [...guestSavedUnis, id];
+      setGuestSavedUnis(updated);
       localStorage.setItem('altan_bosgo_guest_saved', JSON.stringify(updated));
       return;
     }
@@ -121,16 +142,81 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const isSavedUniversity = (id: string) => {
     if (!user) {
-      if (typeof window === 'undefined') return false;
-      const guestSaved = JSON.parse(localStorage.getItem('altan_bosgo_guest_saved') || '[]');
-      return guestSaved.includes(id);
+      return guestSavedUnis.includes(id);
     }
     return (user.savedUniversities || []).includes(id);
   };
 
+  const toggleSaveMajor = (id: string) => {
+    if (!user) {
+      const updated = guestSavedMajors.includes(id)
+        ? guestSavedMajors.filter((i) => i !== id)
+        : [...guestSavedMajors, id];
+      setGuestSavedMajors(updated);
+      localStorage.setItem('altan_bosgo_guest_majors', JSON.stringify(updated));
+      return;
+    }
+
+    const current = user.savedMajors || [];
+    const updated = current.includes(id)
+      ? current.filter((i) => i !== id)
+      : [...current, id];
+    const updatedUser = { ...user, savedMajors: updated };
+    setUser(updatedUser);
+    localStorage.setItem('altan_bosgo_user', JSON.stringify(updatedUser));
+  };
+
+  const isSavedMajor = (id: string) => {
+    if (!user) {
+      return guestSavedMajors.includes(id);
+    }
+    return (user.savedMajors || []).includes(id);
+  };
+
+  const toggleSaveScholarship = (id: string) => {
+    if (!user) {
+      const updated = guestSavedScholarships.includes(id)
+        ? guestSavedScholarships.filter((i) => i !== id)
+        : [...guestSavedScholarships, id];
+      setGuestSavedScholarships(updated);
+      localStorage.setItem('altan_bosgo_guest_scholarships', JSON.stringify(updated));
+      return;
+    }
+
+    const current = user.savedScholarships || [];
+    const updated = current.includes(id)
+      ? current.filter((i) => i !== id)
+      : [...current, id];
+    const updatedUser = { ...user, savedScholarships: updated };
+    setUser(updatedUser);
+    localStorage.setItem('altan_bosgo_user', JSON.stringify(updatedUser));
+  };
+
+  const isSavedScholarship = (id: string) => {
+    if (!user) {
+      return guestSavedScholarships.includes(id);
+    }
+    return (user.savedScholarships || []).includes(id);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, logout, toggleSaveUniversity, isSavedUniversity }}
+      value={{
+        user,
+        loading,
+        guestSavedUnis,
+        guestSavedMajors,
+        guestSavedScholarships,
+        login,
+        register,
+        logout,
+        toggleSaveUniversity,
+        isSavedUniversity,
+        toggleSaveMajor,
+        isSavedMajor,
+        toggleSaveScholarship,
+        isSavedScholarship,
+      }}
     >
       {children}
     </AuthContext.Provider>

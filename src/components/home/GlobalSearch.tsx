@@ -57,21 +57,21 @@ export const GlobalSearch: React.FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Сургууль, их сургууль, мэргэжил хайх... (жнь: МУИС, ШУТИС, Эмч)"
-              className="w-full pl-12 pr-12 py-4 rounded-2xl bg-surface-light-subtle dark:bg-navy-950 border-2 border-gray-200 dark:border-navy-700 text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-gold dark:focus:border-gold shadow-md text-base sm:text-lg transition-all"
+              className="w-full pl-12 pr-12 py-4 rounded-3xl clay-input text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none text-base sm:text-lg transition-all"
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-4 p-1 rounded-full text-gray-400 hover:text-navy-900 dark:hover:text-white"
+                className="absolute right-4 p-1.5 rounded-full clay-btn-surface text-gray-400 hover:text-navy-900 dark:hover:text-white"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
 
           {/* Keyword Examples */}
-          <div className="flex flex-wrap items-center gap-1.5 mt-3 text-xs text-gray-500 dark:text-gray-400">
-            <span className="font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-2 mt-3 text-xs text-gray-500 dark:text-gray-400">
+            <span className="font-bold text-gray-600 dark:text-gray-300 flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-gold" />
               Түгээмэл:
             </span>
@@ -80,7 +80,7 @@ export const GlobalSearch: React.FC = () => {
                 key={kw}
                 type="button"
                 onClick={() => setQuery(kw)}
-                className="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-gold/20 dark:bg-navy-800 dark:hover:bg-navy-700 text-navy-900 dark:text-gray-200 transition-colors"
+                className="px-3 py-1 rounded-full clay-pill bg-white dark:bg-navy-900 hover:bg-gold/20 text-navy-900 dark:text-gray-200 transition-colors font-semibold"
               >
                 {kw}
               </button>
@@ -100,10 +100,10 @@ export const GlobalSearch: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as SearchCategory)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${
                   activeCategory === cat.id
-                    ? 'bg-gold text-navy-900 shadow-sm'
-                    : 'bg-gray-100 dark:bg-navy-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-navy-700'
+                    ? 'clay-btn-gold shadow-md'
+                    : 'clay-btn-surface text-gray-600 dark:text-gray-300'
                 }`}
               >
                 {cat.label}
@@ -114,10 +114,10 @@ export const GlobalSearch: React.FC = () => {
 
         {/* Live Search Results Dropdown/Card Panel */}
         {hasQuery && (
-          <div className="mt-8 max-w-4xl mx-auto bg-surface-light-subtle dark:bg-navy-950 rounded-2xl border border-gray-200 dark:border-navy-800 p-5 shadow-xl animate-in fade-in-50 duration-200">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-navy-800 text-xs text-gray-500 dark:text-gray-400 mb-4">
-              <span>Хайлтын илэрц: <strong>{totalMatches}</strong></span>
-              <button onClick={() => setQuery('')} className="text-gray-400 hover:text-red-500">
+          <div className="mt-8 max-w-4xl mx-auto clay-card p-6 animate-in fade-in-50 duration-200">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-navy-800 text-xs text-gray-500 dark:text-gray-400 mb-5">
+              <span>Хайлтын илэрц: <strong className="text-gold font-bold">{totalMatches}</strong></span>
+              <button onClick={() => setQuery('')} className="px-2.5 py-1 rounded-lg clay-btn-surface text-xs font-semibold text-gray-500 hover:text-red-500">
                 Хаах
               </button>
             </div>
@@ -131,19 +131,19 @@ export const GlobalSearch: React.FC = () => {
                 {/* Universities Result */}
                 {(activeCategory === 'all' || activeCategory === 'university') && results.universities.length > 0 && (
                   <div>
-                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-navy-900 dark:text-white mb-2">
+                    <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-navy-900 dark:text-white mb-3">
                       <GraduationCap className="w-4 h-4 text-gold" />
                       <span>Их, дээд сургуулиуд ({results.universities.length})</span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {results.universities.map((uni) => (
                         <Link
                           key={uni.id}
                           href={`/universities/${uni.id}`}
-                          className="p-3 bg-white dark:bg-navy-900 rounded-xl border border-gray-100 dark:border-navy-800 hover:border-gold transition-colors flex items-start justify-between gap-3 group"
+                          className="p-3.5 clay-card clay-card-hover flex items-start justify-between gap-3 group"
                         >
                           <div>
-                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors">
+                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors block">
                               {uni.name} ({uni.shortName})
                             </span>
                             <p className="text-xs text-gray-500 line-clamp-1 mt-0.5">{uni.location}</p>
@@ -163,23 +163,23 @@ export const GlobalSearch: React.FC = () => {
                 {/* Schools Result */}
                 {(activeCategory === 'all' || activeCategory === 'school') && results.schools.length > 0 && (
                   <div>
-                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-navy-900 dark:text-white mb-2">
+                    <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-navy-900 dark:text-white mb-3">
                       <SchoolIcon className="w-4 h-4 text-gold" />
                       <span>ЕБС Сургуулиуд ({results.schools.length})</span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {results.schools.map((school) => (
                         <Link
                           key={school.id}
                           href="/schools"
-                          className="p-3 bg-white dark:bg-navy-900 rounded-xl border border-gray-100 dark:border-navy-800 hover:border-gold transition-colors flex items-start justify-between gap-3 group"
+                          className="p-3.5 clay-card clay-card-hover flex items-start justify-between gap-3 group"
                         >
                           <div>
-                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors">
+                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors block">
                               {school.name}
                             </span>
                             <p className="text-xs text-gray-500 line-clamp-1 mt-0.5">{school.address}</p>
-                            <span className="inline-block mt-2 px-2 py-0.5 rounded bg-gray-100 dark:bg-navy-800 text-[10px] font-semibold text-gray-700 dark:text-gray-300">
+                            <span className="inline-block mt-2 px-2.5 py-0.5 rounded-full clay-pill text-[10px] font-bold text-gray-700 dark:text-gray-300">
                               {school.type}
                             </span>
                           </div>
@@ -193,18 +193,18 @@ export const GlobalSearch: React.FC = () => {
                 {/* Majors Result */}
                 {(activeCategory === 'all' || activeCategory === 'major') && results.majors.length > 0 && (
                   <div>
-                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-navy-900 dark:text-white mb-2">
+                    <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-navy-900 dark:text-white mb-3">
                       <Compass className="w-4 h-4 text-gold" />
                       <span>Мэргэжил сонголт ({results.majors.length})</span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {results.majors.map((major) => (
                         <Link
                           key={major.id}
                           href="/majors"
-                          className="p-3 bg-white dark:bg-navy-900 rounded-xl border border-gray-100 dark:border-navy-800 hover:border-gold transition-colors block group"
+                          className="p-3.5 clay-card clay-card-hover block group"
                         >
-                          <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors">
+                          <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors block">
                             {major.name}
                           </span>
                           <p className="text-xs text-gray-500 line-clamp-1 mt-0.5">{major.description}</p>
@@ -220,23 +220,23 @@ export const GlobalSearch: React.FC = () => {
                 {/* Scholarships Result */}
                 {(activeCategory === 'all' || activeCategory === 'scholarship') && results.scholarships.length > 0 && (
                   <div>
-                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-navy-900 dark:text-white mb-2">
+                    <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-navy-900 dark:text-white mb-3">
                       <Award className="w-4 h-4 text-gold" />
                       <span>Тэтгэлэгт хөтөлбөрүүд ({results.scholarships.length})</span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {results.scholarships.map((sch) => (
                         <Link
                           key={sch.id}
                           href="/scholarships"
-                          className="p-3 bg-white dark:bg-navy-900 rounded-xl border border-gray-100 dark:border-navy-800 hover:border-gold transition-colors flex items-start justify-between gap-3 group"
+                          className="p-3.5 clay-card clay-card-hover flex items-start justify-between gap-3 group"
                         >
                           <div>
-                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors">
+                            <span className="font-bold text-sm text-navy-900 dark:text-white group-hover:text-gold transition-colors block">
                               {sch.title}
                             </span>
                             <p className="text-xs text-gray-500 line-clamp-1 mt-0.5">{sch.organization}</p>
-                            <span className="inline-block mt-2 text-gold-700 dark:text-gold text-[11px] font-semibold">
+                            <span className="inline-block mt-2 text-gold-700 dark:text-gold text-[11px] font-bold">
                               Хугацаа: {sch.deadline}
                             </span>
                           </div>

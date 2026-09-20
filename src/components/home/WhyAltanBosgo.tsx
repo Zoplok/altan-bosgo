@@ -48,17 +48,19 @@ export const WhyAltanBosgo: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-surface-light-subtle dark:bg-navy-950 p-6 rounded-2xl border border-gray-100 dark:border-navy-800 hover:border-gold dark:hover:border-gold transition-colors duration-300"
+                className="clay-card clay-card-hover p-6 flex flex-col justify-between"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold/15 text-gold-700 dark:text-gold flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6" />
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-gold/15 text-gold-700 dark:text-gold flex items-center justify-center mb-4 shadow-[inset_0_2px_4px_rgba(255,255,255,0.6),inset_0_-2px_4px_rgba(0,0,0,0.1)] border border-gold/30">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white mb-2 font-display">
+                    &ldquo;{item.title}&rdquo;
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-navy-900 dark:text-white mb-2">
-                  &ldquo;{item.title}&rdquo;
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             );
           })}

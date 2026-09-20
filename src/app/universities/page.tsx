@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { UNIVERSITIES } from '@/lib/data';
 import { VerificationBadge } from '@/components/ui/VerificationBadge';
 import { useCompare } from '@/context/CompareContext';
@@ -16,19 +17,29 @@ import {
   ArrowRight,
   Bookmark,
   Check,
-  SlidersHorizontal,
   RotateCcw,
 } from 'lucide-react';
 
-export default function UniversitiesPage() {
+function UniversitiesContent() {
+  const searchParams = useSearchParams();
+  const initialType = searchParams.get('type') || 'all';
+  const initialSearch = searchParams.get('search') || '';
+
   const { addUniversity, removeUniversity, isComparing } = useCompare();
   const { toggleSaveUniversity, isSavedUniversity } = useAuth();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  const [selectedType, setSelectedType] = useState<string>(initialType);
   const [selectedCity, setSelectedCity] = useState<string>('all');
   const [selectedScore, setSelectedScore] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('popular');
+
+  useEffect(() => {
+    const q = searchParams.get('search');
+    const t = searchParams.get('type');
+    if (q !== null) setSearchQuery(q);
+    if (t !== null) setSelectedType(t);
+  }, [searchParams]);
 
   const filteredUniversities = useMemo(() => {
     let list = [...UNIVERSITIES];
@@ -103,7 +114,7 @@ export default function UniversitiesPage() {
         </div>
 
         {/* Filters & Search Toolbar */}
-        <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-4 sm:p-5 shadow-sm mb-8 space-y-4">
+        <div className="clay-card p-5 sm:p-6 mb-8 space-y-4">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -113,19 +124,19 @@ export default function UniversitiesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Сургуулийн нэр, товчлол эсвэл мэргэжлээр хайх..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-sm text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                className="w-full pl-10 pr-4 py-2.5 rounded-2xl clay-input text-sm text-navy-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50"
               />
             </div>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 shrink-0">
-              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 hidden sm:inline">
+              <span className="text-xs font-bold text-gray-500 dark:text-gray-400 hidden sm:inline">
                 Эрэмбэлэх:
               </span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2.5 rounded-xl bg-gray-50 dark:bg-navy-950 border border-gray-200 dark:border-navy-700 text-xs sm:text-sm font-medium text-navy-900 dark:text-white focus:outline-none focus:border-gold"
+                className="px-3.5 py-2.5 rounded-2xl clay-input text-xs sm:text-sm font-semibold text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold/50 cursor-pointer"
               >
                 <option value="popular">Алдартай / Эрэмбээр</option>
                 <option value="score-desc">Босго оноогоор (Өндөр нь эхэнд)</option>
@@ -138,7 +149,7 @@ export default function UniversitiesPage() {
               {(searchQuery || selectedType !== 'all' || selectedScore !== 'all') && (
                 <button
                   onClick={resetFilters}
-                  className="p-2.5 rounded-xl border border-gray-200 dark:border-navy-700 text-gray-500 hover:text-red-500 transition-colors"
+                  className="p-2.5 rounded-2xl clay-btn-surface text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors"
                   title="Шүүлтүүрийг цэвэрлэх"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -148,9 +159,9 @@ export default function UniversitiesPage() {
           </div>
 
           {/* Quick Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-100 dark:border-navy-800 text-xs">
-            <span className="font-semibold text-gray-500 dark:text-gray-400 mr-1 flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5" />
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-200/60 dark:border-navy-800/80 text-xs">
+            <span className="font-bold text-gray-600 dark:text-gray-300 mr-1 flex items-center gap-1">
+              <Filter className="w-3.5 h-3.5 text-gold" />
               Өмчийн төрөл:
             </span>
             {[
@@ -162,17 +173,17 @@ export default function UniversitiesPage() {
               <button
                 key={t.id}
                 onClick={() => setSelectedType(t.id)}
-                className={`px-3 py-1 rounded-lg transition-colors font-medium ${
+                className={`px-3.5 py-1.5 rounded-xl transition-all text-xs ${
                   selectedType === t.id
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 font-bold'
-                    : 'bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                    ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                    : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
                 }`}
               >
                 {t.label}
               </button>
             ))}
 
-            <span className="font-semibold text-gray-500 dark:text-gray-400 ml-3 mr-1">
+            <span className="font-bold text-gray-600 dark:text-gray-300 ml-3 mr-1">
               Босго оноо:
             </span>
             {[
@@ -184,10 +195,10 @@ export default function UniversitiesPage() {
               <button
                 key={s.id}
                 onClick={() => setSelectedScore(s.id)}
-                className={`px-3 py-1 rounded-lg transition-colors font-medium ${
+                className={`px-3.5 py-1.5 rounded-xl transition-all text-xs ${
                   selectedScore === s.id
-                    ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900 font-bold'
-                    : 'bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
+                    ? 'clay-pill bg-navy-900 text-white dark:bg-gold dark:text-navy-950 font-extrabold shadow-sm'
+                    : 'clay-btn-surface text-gray-700 dark:text-gray-300 font-semibold'
                 }`}
               >
                 {s.label}
@@ -197,20 +208,20 @@ export default function UniversitiesPage() {
         </div>
 
         {/* Results Count Bar */}
-        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-6">
-          <span>Нийт олдсон: <strong>{filteredUniversities.length}</strong> их сургууль</span>
-          <span>Мэдээлэл бүр албан ёсны эх сурвалжтай баталгаажсан</span>
+        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-6 px-1">
+          <span>Нийт олдсон: <strong className="text-navy-900 dark:text-gold">{filteredUniversities.length}</strong> их сургууль</span>
+          <span className="hidden sm:inline">Мэдээлэл бүр албан ёсны эх сурвалжтай баталгаажсан</span>
         </div>
 
         {/* Grid of University Cards */}
         {filteredUniversities.length === 0 ? (
-          <div className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200 dark:border-navy-800 p-12 text-center">
+          <div className="clay-card p-12 text-center">
             <GraduationCap className="w-12 h-12 text-gray-400 mx-auto mb-3" />
             <h3 className="text-lg font-bold text-navy-900 dark:text-white">Сургууль олдсонгүй</h3>
             <p className="text-sm text-gray-500 mt-1">Та шүүлтүүрээ өөрчлөх эсвэл цэвэрлээд дахин хайна уу.</p>
             <button
               onClick={resetFilters}
-              className="mt-4 px-4 py-2 rounded-xl bg-gold text-navy-900 font-bold text-xs"
+              className="mt-4 px-5 py-2.5 rounded-2xl clay-btn-gold text-navy-950 font-bold text-xs"
             >
               Шүүлтүүрүүдийг цэвэрлэх
             </button>
@@ -224,31 +235,31 @@ export default function UniversitiesPage() {
               return (
                 <div
                   key={uni.id}
-                  className="bg-white dark:bg-navy-900 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-5 shadow-sm hover:shadow-xl hover:border-gold/60 transition-all duration-300 flex flex-col justify-between"
+                  className="clay-card clay-card-hover p-6 flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Type, Status & Save */}
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <span
-                        className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                        className={`text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm ${
                           uni.type === 'Төрийн'
-                            ? 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
+                            ? 'bg-blue-100 text-blue-900 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
                             : uni.type === 'Хамтарсан'
-                            ? 'bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300'
-                            : 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                            ? 'bg-purple-100 text-purple-900 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-800'
+                            : 'bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
                         }`}
                       >
                         {uni.type} өмчит
                       </span>
 
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-2">
                         <VerificationBadge verification={uni.verification} size="sm" />
                         <button
                           onClick={() => toggleSaveUniversity(uni.id)}
-                          className={`p-1.5 rounded-lg border transition-colors ${
+                          className={`p-2 rounded-xl transition-all ${
                             saved
-                              ? 'bg-gold/10 border-gold text-gold-700 dark:text-gold'
-                              : 'border-gray-200 dark:border-navy-700 text-gray-400 hover:text-navy-900 dark:hover:text-white'
+                              ? 'clay-btn-gold text-navy-950'
+                              : 'clay-btn-surface text-gray-400 hover:text-navy-900 dark:hover:text-white'
                           }`}
                           title={saved ? 'Хадгалсан' : 'Хадгалах'}
                         >
@@ -259,7 +270,7 @@ export default function UniversitiesPage() {
 
                     {/* Header: Logo, Name */}
                     <Link href={`/universities/${uni.id}`} className="flex items-start gap-3.5 group mb-3">
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-gray-50 dark:bg-navy-950 border border-gray-100 dark:border-navy-800 shrink-0 shadow-sm">
+                      <div className="relative w-12 h-12 rounded-2xl overflow-hidden bg-white dark:bg-navy-950 border border-gray-200/80 dark:border-navy-800 shrink-0 shadow-[inset_0_2px_4px_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.06)]">
                         <Image
                           src={uni.logo}
                           alt={uni.name}
@@ -271,33 +282,33 @@ export default function UniversitiesPage() {
                         <h3 className="font-bold text-base text-navy-900 dark:text-white group-hover:text-gold transition-colors line-clamp-1">
                           {uni.shortName}
                         </h3>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 font-medium">
                           {uni.name}
                         </p>
                         <div className="flex items-center gap-1 text-[11px] text-gray-400 mt-1">
-                          <MapPin className="w-3 h-3 text-gray-400 shrink-0" />
+                          <MapPin className="w-3 h-3 text-gold shrink-0" />
                           <span className="truncate">{uni.location}</span>
                         </div>
                       </div>
                     </Link>
 
                     {/* Metrics Box */}
-                    <div className="grid grid-cols-3 gap-2 py-2.5 px-3 bg-gray-50 dark:bg-navy-950 rounded-xl border border-gray-100 dark:border-navy-800 text-center my-3">
+                    <div className="clay-recessed grid grid-cols-3 gap-2 py-3 px-3 rounded-2xl text-center my-3">
                       <div>
-                        <span className="text-[10px] text-gray-400 block">Босго оноо</span>
-                        <span className="text-xs font-bold text-navy-900 dark:text-white">
+                        <span className="text-[10px] text-gray-400 block font-medium">Босго оноо</span>
+                        <span className="text-xs font-extrabold text-navy-900 dark:text-white">
                           {uni.highlightScores.minScore}+
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-gray-400 block">1 кредит</span>
-                        <span className="text-xs font-bold text-gold">
+                        <span className="text-[10px] text-gray-400 block font-medium">1 кредит</span>
+                        <span className="text-xs font-extrabold text-gold">
                           {(uni.tuitionSummary.creditPrice / 1000).toFixed(0)}k₮
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-gray-400 block">Хөтөлбөр</span>
-                        <span className="text-xs font-bold text-navy-900 dark:text-white">
+                        <span className="text-[10px] text-gray-400 block font-medium">Хөтөлбөр</span>
+                        <span className="text-xs font-extrabold text-navy-900 dark:text-white">
                           {uni.programCount}
                         </span>
                       </div>
@@ -309,7 +320,7 @@ export default function UniversitiesPage() {
                   </div>
 
                   {/* Bottom Action Buttons */}
-                  <div className="mt-5 pt-3 border-t border-gray-100 dark:border-navy-800 flex items-center justify-between gap-2">
+                  <div className="mt-5 pt-3 border-t border-gray-100 dark:border-navy-800/80 flex items-center justify-between gap-2">
                     <button
                       type="button"
                       onClick={() => {
@@ -319,10 +330,10 @@ export default function UniversitiesPage() {
                           addUniversity(uni.id);
                         }
                       }}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                         comparing
-                          ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900'
-                          : 'bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-navy-700'
+                          ? 'clay-btn-gold text-navy-950'
+                          : 'clay-btn-surface text-gray-700 dark:text-gray-300'
                       }`}
                     >
                       {comparing ? <Check className="w-3.5 h-3.5" /> : <Scale className="w-3.5 h-3.5" />}
@@ -331,7 +342,7 @@ export default function UniversitiesPage() {
 
                     <Link
                       href={`/universities/${uni.id}`}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-navy-900 dark:text-white hover:text-gold dark:hover:text-gold"
+                      className="clay-btn-surface px-3.5 py-2 rounded-xl inline-flex items-center gap-1 text-xs font-bold text-navy-900 dark:text-white hover:text-gold dark:hover:text-gold"
                     >
                       <span>Дэлгэрэнгүй</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -344,5 +355,20 @@ export default function UniversitiesPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function UniversitiesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen py-20 flex items-center justify-center">
+        <div className="clay-card p-8 text-center max-w-sm">
+          <GraduationCap className="w-8 h-8 text-gold mx-auto mb-2 animate-bounce" />
+          <span className="text-sm font-bold text-navy-900 dark:text-white">Уншиж байна...</span>
+        </div>
+      </div>
+    }>
+      <UniversitiesContent />
+    </Suspense>
   );
 }

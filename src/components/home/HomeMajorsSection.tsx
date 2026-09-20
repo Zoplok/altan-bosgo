@@ -42,16 +42,16 @@ export const HomeMajorsSection: React.FC = () => {
             return (
               <div
                 key={major.id}
-                className="bg-surface-light-subtle dark:bg-navy-950 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-5 shadow-sm hover:shadow-lg hover:border-gold transition-all duration-300 flex flex-col justify-between"
+                className="clay-card clay-card-hover p-6 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold px-2.5 py-0.5 rounded-full bg-gold/10">
+                  <div className="flex items-center justify-between gap-2 mb-3.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-700 dark:text-gold px-3 py-1 rounded-full clay-pill bg-gold/15 border border-gold/30">
                       {major.category}
                     </span>
-                    <div className="flex items-center gap-1 text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <div className="flex items-center gap-1 text-[11px] text-emerald-600 dark:text-emerald-400 font-bold clay-pill px-2 py-0.5">
                       <TrendingUp className="w-3.5 h-3.5" />
-                      <span>{major.trendScore}% эрэлттэй</span>
+                      <span>{major.trendScore}%</span>
                     </div>
                   </div>
 
@@ -67,11 +67,11 @@ export const HomeMajorsSection: React.FC = () => {
                     <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold block mb-1">
                       Шаардлагатай ЭЕШ:
                     </span>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {major.requiredExams.map((exam, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded-md bg-white dark:bg-navy-900 border border-gray-200 dark:border-navy-700 text-[11px] font-medium text-navy-900 dark:text-gray-200"
+                          className="px-2.5 py-0.5 rounded-lg clay-pill bg-white dark:bg-navy-900 text-[11px] font-bold text-navy-900 dark:text-gray-200"
                         >
                           {exam}
                         </span>
@@ -88,7 +88,7 @@ export const HomeMajorsSection: React.FC = () => {
                       {universities.map((u) => (
                         <span
                           key={u?.id}
-                          className="text-[11px] font-semibold text-navy-800 dark:text-gray-300"
+                          className="text-[11px] font-bold text-navy-800 dark:text-gray-300"
                         >
                           {u?.shortName} •
                         </span>
@@ -97,10 +97,10 @@ export const HomeMajorsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-gray-200/60 dark:border-navy-800/80">
+                <div className="mt-6 pt-3.5 border-t border-gray-100 dark:border-navy-800">
                   <Link
                     href={`/majors?select=${major.id}`}
-                    className="inline-flex items-center justify-between w-full text-xs font-bold text-navy-900 dark:text-gold hover:underline"
+                    className="inline-flex items-center justify-between w-full text-xs font-bold text-navy-900 dark:text-gold hover:underline group-hover:translate-x-0.5 transition-transform"
                   >
                     <span>Дэлгэрэнгүй & Сургуулиуд</span>
                     <ArrowRight className="w-3.5 h-3.5" />

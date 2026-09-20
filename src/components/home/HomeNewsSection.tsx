@@ -38,11 +38,11 @@ export const HomeNewsSection: React.FC = () => {
           {featured.map((article) => (
             <Link
               key={article.id}
-              href={`/news#${article.id}`}
-              className="group bg-surface-light-subtle dark:bg-navy-950 rounded-2xl border border-gray-200/80 dark:border-navy-800 overflow-hidden shadow-sm hover:shadow-xl hover:border-gold transition-all duration-300 flex flex-col justify-between"
+              href={`/news?id=${article.id}`}
+              className="group clay-card clay-card-hover overflow-hidden flex flex-col justify-between"
             >
               <div>
-                <div className="relative h-44 w-full bg-gray-100 dark:bg-navy-800">
+                <div className="relative h-48 w-full bg-gray-100 dark:bg-navy-800">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -50,7 +50,7 @@ export const HomeNewsSection: React.FC = () => {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-navy-900/90 text-white backdrop-blur shadow-sm">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold clay-pill bg-white/90 dark:bg-navy-900/90 text-navy-900 dark:text-white backdrop-blur shadow-sm">
                       {article.category}
                     </span>
                   </div>
@@ -58,7 +58,7 @@ export const HomeNewsSection: React.FC = () => {
 
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                    <Calendar className="w-3.5 h-3.5" />
+                    <Calendar className="w-3.5 h-3.5 text-gold" />
                     <span>{article.date}</span>
                     <span>•</span>
                     <span className="truncate">{article.author}</span>
@@ -75,7 +75,7 @@ export const HomeNewsSection: React.FC = () => {
               </div>
 
               <div className="p-5 pt-0">
-                <span className="text-xs font-bold text-gold group-hover:underline flex items-center gap-1">
+                <span className="text-xs font-bold text-gold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                   Дэлгэрэнгүй унших <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>

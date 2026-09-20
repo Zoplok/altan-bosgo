@@ -49,13 +49,13 @@ export const PopularUnis: React.FC = () => {
             return (
               <div
                 key={uni.id}
-                className="bg-surface-light-subtle dark:bg-navy-950 rounded-2xl border border-gray-200/80 dark:border-navy-800 p-5 shadow-sm hover:shadow-xl hover:border-gold/60 dark:hover:border-gold/60 transition-all duration-300 flex flex-col justify-between"
+                className="clay-card clay-card-hover p-6 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar: Type, Verification & Bookmark */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center justify-between gap-2 mb-4">
                     <span
-                      className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                      className={`text-[11px] font-bold px-3 py-1 rounded-full clay-pill ${
                         uni.type === 'Төрийн'
                           ? 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
                           : uni.type === 'Хамтарсан'
@@ -66,14 +66,14 @@ export const PopularUnis: React.FC = () => {
                       {uni.type} өмчит
                     </span>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-2">
                       <VerificationBadge verification={uni.verification} size="sm" />
                       <button
                         onClick={() => toggleSaveUniversity(uni.id)}
-                        className={`p-1.5 rounded-lg border transition-colors ${
+                        className={`p-2 rounded-xl clay-btn-surface transition-all ${
                           saved
-                            ? 'bg-gold/10 border-gold text-gold-700 dark:text-gold'
-                            : 'border-gray-200 dark:border-navy-700 text-gray-400 hover:text-navy-900 dark:hover:text-white'
+                            ? 'text-gold-600 dark:text-gold ring-1 ring-gold/50'
+                            : 'text-gray-400 hover:text-navy-900 dark:hover:text-white'
                         }`}
                         title={saved ? 'Хадгалсан жагсаалтаас хасах' : 'Хадгалах'}
                       >
@@ -83,8 +83,8 @@ export const PopularUnis: React.FC = () => {
                   </div>
 
                   {/* Header: Logo & Title */}
-                  <Link href={`/universities/${uni.id}`} className="flex items-start gap-3.5 group mb-3">
-                    <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white dark:bg-navy-900 border border-gray-100 dark:border-navy-800 shrink-0 shadow-sm">
+                  <Link href={`/universities/${uni.id}`} className="flex items-start gap-3.5 group mb-3.5">
+                    <div className="relative w-13 h-13 p-2 rounded-2xl clay-pill bg-white dark:bg-navy-900 shrink-0">
                       <Image
                         src={uni.logo}
                         alt={uni.name}
@@ -107,21 +107,21 @@ export const PopularUnis: React.FC = () => {
                   </Link>
 
                   {/* Metrics Grid */}
-                  <div className="grid grid-cols-3 gap-2 py-3 px-3 bg-white dark:bg-navy-900 rounded-xl border border-gray-100 dark:border-navy-800 text-center my-3">
+                  <div className="grid grid-cols-3 gap-2 py-3 px-3.5 clay-recessed text-center my-3.5">
                     <div>
-                      <span className="text-[10px] text-gray-400 block">Босго оноо</span>
+                      <span className="text-[10px] text-gray-400 block font-semibold">Босго оноо</span>
                       <span className="text-xs font-bold text-navy-900 dark:text-white">
                         {uni.highlightScores.minScore}+
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-400 block">1 кредит</span>
-                      <span className="text-xs font-bold text-gold">
+                      <span className="text-[10px] text-gray-400 block font-semibold">1 кредит</span>
+                      <span className="text-xs font-extrabold text-gold">
                         {(uni.tuitionSummary.creditPrice / 1000).toFixed(0)}k₮
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-400 block">Хөтөлбөр</span>
+                      <span className="text-[10px] text-gray-400 block font-semibold">Хөтөлбөр</span>
                       <span className="text-xs font-bold text-navy-900 dark:text-white">
                         {uni.programCount}
                       </span>
@@ -134,7 +134,7 @@ export const PopularUnis: React.FC = () => {
                 </div>
 
                 {/* Bottom Actions: Compare & Details */}
-                <div className="mt-5 pt-3 border-t border-gray-200/60 dark:border-navy-800/80 flex items-center justify-between gap-2">
+                <div className="mt-5 pt-3.5 border-t border-gray-100 dark:border-navy-800 flex items-center justify-between gap-2">
                   <button
                     type="button"
                     onClick={() => {
@@ -144,10 +144,10 @@ export const PopularUnis: React.FC = () => {
                         addUniversity(uni.id);
                       }
                     }}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                       comparing
-                        ? 'bg-navy-900 text-white dark:bg-gold dark:text-navy-900'
-                        : 'bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-navy-700'
+                        ? 'clay-btn-gold'
+                        : 'clay-btn-surface'
                     }`}
                   >
                     {comparing ? <Check className="w-3.5 h-3.5" /> : <Scale className="w-3.5 h-3.5" />}

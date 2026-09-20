@@ -8,26 +8,28 @@ import { ShieldCheck, Target, Heart, CheckCircle2, ArrowRight } from 'lucide-rea
 export default function AboutPage() {
   return (
     <div className="bg-surface-light-subtle dark:bg-navy-950 min-h-screen py-12 transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Brand Intro */}
         <div className="text-center">
-          <div className="relative w-20 h-20 rounded-3xl overflow-hidden shadow-md ring-2 ring-gold/40 mx-auto mb-4">
-            <Image src="/images/logo.png" alt="Алтан босго лого" fill className="object-cover" />
+          <div className="relative w-20 h-20 rounded-3xl overflow-hidden clay-pill mx-auto mb-4 p-2 bg-white dark:bg-navy-800 flex items-center justify-center">
+            <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              <Image src="/images/logo.png" alt="Алтан босго лого" fill className="object-cover" />
+            </div>
           </div>
-          <span className="text-xs font-bold text-gold uppercase tracking-wider block mb-1">
+          <span className="text-xs font-extrabold text-gold uppercase tracking-wider block mb-1">
             Бидний тухай
           </span>
           <h1 className="text-3xl sm:text-4xl font-display font-extrabold text-navy-900 dark:text-white">
             АЛТАН БОСГО — Монголын Боловсролын Нэгдсэн Платформ
           </h1>
-          <p className="mt-3 text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-3 text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed font-medium">
             &ldquo;Боловсролын бүх мэдээлэл — нэг дор.&rdquo;
           </p>
         </div>
 
         {/* Brand Meaning & Vision */}
-        <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-6 sm:p-8 shadow-sm space-y-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-          <h2 className="text-xl font-bold text-navy-900 dark:text-white flex items-center gap-2">
+        <div className="clay-card p-6 sm:p-8 space-y-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+          <h2 className="text-xl font-bold text-navy-900 dark:text-white flex items-center gap-2 font-display">
             <Target className="w-5 h-5 text-gold" />
             <span>Нэрний утга учир & Зорилго</span>
           </h2>
@@ -40,8 +42,8 @@ export default function AboutPage() {
         </div>
 
         {/* Data Integrity Section */}
-        <div className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-6 sm:p-8 shadow-sm space-y-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-          <h2 className="text-xl font-bold text-navy-900 dark:text-white flex items-center gap-2">
+        <div className="clay-card p-6 sm:p-8 space-y-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+          <h2 className="text-xl font-bold text-navy-900 dark:text-white flex items-center gap-2 font-display">
             <ShieldCheck className="w-5 h-5 text-emerald-500" />
             <span>Мэдээллийн найдвартай байдлын зарчим</span>
           </h2>
@@ -50,23 +52,23 @@ export default function AboutPage() {
           </p>
           <ul className="space-y-2 text-xs sm:text-sm">
             <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Зохиомол бус, зөвхөн албан ёсны эх сурвалжтай өгөгдөл</span>
             </li>
             <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Шинэчлэгдсэн огноо болон албан ёсны холбоосыг ил тод харуулах</span>
             </li>
             <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Хэрэв мэдээлэл батлагдаагүй бол &ldquo;Шинэчлэгдэж байна&rdquo; төлөвтэй тэмдэглэх</span>
             </li>
           </ul>
         </div>
 
         {/* Legal Anchors */}
-        <div id="privacy" className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-6 sm:p-8 shadow-sm space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          <h3 className="text-base font-bold text-navy-900 dark:text-white">
+        <div id="privacy" className="clay-card p-6 sm:p-8 space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">
+          <h3 className="text-base font-bold text-navy-900 dark:text-white font-display">
             Нууцлалын бодлого (Privacy Policy)
           </h3>
           <p>
@@ -74,8 +76,8 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div id="terms" className="bg-white dark:bg-navy-900 rounded-3xl border border-gray-200 dark:border-navy-800 p-6 sm:p-8 shadow-sm space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          <h3 className="text-base font-bold text-navy-900 dark:text-white">
+        <div id="terms" className="clay-card p-6 sm:p-8 space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-medium">
+          <h3 className="text-base font-bold text-navy-900 dark:text-white font-display">
             Үйлчилгээний нөхцөл (Terms of Service)
           </h3>
           <p>

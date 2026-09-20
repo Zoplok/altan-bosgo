@@ -70,14 +70,14 @@ export const GatewayCards: React.FC = () => {
               <Link
                 key={idx}
                 href={card.href}
-                className="group relative bg-white dark:bg-navy-900 rounded-2xl p-6 border border-gray-200/80 dark:border-navy-800 shadow-sm hover:shadow-xl hover:border-gold dark:hover:border-gold transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
+                className="group relative clay-card clay-card-hover p-6 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center ${card.accentColor} group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className={`w-13 h-13 p-3 rounded-2xl clay-pill bg-gradient-to-br ${card.gradient} flex items-center justify-center ${card.accentColor} group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300">
+                    <span className="text-[11px] font-bold px-3 py-1 rounded-full clay-pill bg-gray-100 dark:bg-navy-800 text-gray-700 dark:text-gray-300">
                       {card.badge}
                     </span>
                   </div>
@@ -87,14 +87,14 @@ export const GatewayCards: React.FC = () => {
                     <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-gold" />
                   </h3>
 
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 line-clamp-3 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 line-clamp-3 leading-relaxed">
                     {card.subtitle}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-navy-800/80 flex items-center justify-between text-xs font-semibold">
+                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-navy-800 flex items-center justify-between text-xs font-bold">
                   <span className="text-navy-900 dark:text-gray-200">{card.count}</span>
-                  <span className="text-gold group-hover:underline">Үзэх →</span>
+                  <span className="text-gold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">Үзэх →</span>
                 </div>
               </Link>
             );
